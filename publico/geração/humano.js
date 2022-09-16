@@ -1,24 +1,5 @@
-const socket = io()
-
-function random_number(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min) + min);
-}
-
-const male = 'male'
-const female = 'female'
-const neutral = 'neutral'
-
-const gender = (type, masc_function, fem_function)=>{
-  if (type == male) {
-    masc_function()
-  } else if (type == female) {
-    fem_function()
-  }
-}
-
 const garundi = {}
+garundi.culture = 'garundi'
 garundi.name = function (type) {
   const masc = ["Aman", "Amare", "Arefani", "Aregawi", "Asmelash", "Assefa", "Awash", "Ayene", "Bekele", "Berhe", "Berihu", "Beyne", "Bitwoded", "Bsrat", "Chirkos", "Dawit", "Debaleko", "Dereje", "Fisahaye", "Gebrehiwet", "Gebrekristos", "Gebreselassie", "Getachew", "Gezaee", "Giday", "Girmai", "Godefai", "Hadgu", "Hagos", "Kahsai", "Kahsu", "Kalu", "Kidane", "Kiros", "Kirubel", "Markos", "Mekonen", "Melos", "Merhawi", "Mesfin", "Misgina", "Nahom", "Negasi", "Siyoum", "Tedros", "Teklu", "Temesgen", "Tesfai", "Tesheme", "Yemane", "Yeneneh", "Yohannes", "Yonas", "Yoni", "Yosef", "Zanta", "Zekulu", "Zemenfes", "Zemichael", "Abebe", "Belai", "Abal", "Abate", "Abay", "Abdel", "Abdella", "Abdellahi", "Abdi", "Abdikarim", "Abdimelech", "Abdu", "Abebaw", "Abebe", "Abel", "Abenet", "Abera", "Abesalom", "Abeselome", "Abey", "Abimelech", "Adamu", "Adane", "Addis", "Adinew", "Adisu", "Admassu", "Adugna", "Afewerek", "Afework", "Afeworki", "Ahemed", "Ahungena", "Aklilu", "Alazar", "Alem", "Alem", "Alemayehu", "Alemu", "Alengae", "Ali", "Aman", "Amanuel", "Amare", "Amde", "Amensisa", "Amha", "Amir", "Amsalu", "Andenet", "Anom", "Anwar", "Araya", "Armah", "Aron", "Asamenew", "Ashenafi", "Asmerom", "Asnake", "Asrat", "Asres", "Assefa", "Assi", "Atatafi", "Atikem", "Ayele", "Azikiwe", "Azim", "Azmera", "Bahta", "Barnabas", "Basliel", "Baslios", "Bayissa", "Bayou", "Bazin", "Beca", "Befikadu", "Beheilu", "Bekila", "Belachew", "Belaye", "Belayneh", "Belendia", "Benti", "Benyam", "Berehanu", "Bereket", "Berhane", "Berhanu", "Berta", "Beryihun", "Beselot", "Bessufekad", "Bezuayehu", "Bililign", "Biru", "Biruh", "Bogale", "Bona", "Boru", "Brehan", "Brehane", "Brehanu", "Bullo", "Bzuayehu", "Caleb", "Cherenebereck", "Chernebereck", "Dagim", "Dagmawi", "Daniachew", "Danichew", "Daniel", "Darge", "Dawit", "Debebe", "Degife", "Degu", "Dejen", "Dejene", "Demeke", "Demessie", "Demissie", "Dereje", "Dessalegne", "Desta", "Dibaba", "Dula", "Duri", "Eba", "Ebissa", "Edris", "Eezkias", "Einku", "Ejigu", "Eleazar", "Elesbaan", "Elias", "Elshaday", "Emerta", "Endale", "Ephraim", "Ephram", "Ephrem", "Ermias", "Eskinder", "Esra", "Essayas", "Etefu", "Eyasu", "Eyoab", "Eyob", "Eyoel", "Ezana", "Ezera", "Ezkeiel", "Fasika", "Fassil", "Fassilidas", "Fekadu", "Feleke", "Fikre", "Finhas", "Fisseha", "Frayzer", "Fsiha", "Gabra", "Galawdeyos", "Gebriael", "Gedarm", "Gedeyon", "Gersem", "Getachew", "Getahun", "Getasew", "Geteye", "Ghidewon", "Gidada", "Girma", "Girum", "Gizaw", "Goliad", "Gorfu", "Goytom", "Gukssa", "Gulema", "Habibi", "Habtamu", "Hagos", "Haider", "Haile", "Hailu", "Hakim", "Hassan", "Henoke", "Hezekiah", "Iskinder", "Israel", "Issa", "Iyasu", "Iyoas", "Jember", "Joas", "Kabede", "Kaleb", "Kaleyesus", "Kassa", "Kayin", "Kebede", "Kelile", "Ketema", "Keya", "Kidane", "Lebna", "Legesse", "Lema", "Lemma", "Lemuel", "Leul", "Liben", "Mamo", "Manasses", "Maren", "Markos", "Masresha", "Meba", "Mebreatu", "Mebrete", "Medr", "Meherka", "Mekbib", "Mekdem", "Mekonnen", "Mekuria", "Melaku", "Melech", "Meles", "Melesse", "Melkamu", "Melku", "Menas", "Menasse", "Mengesha", "Mengistu", "Menkir", "Mesay", "Meseret", "Mesfin", "Mignote", "Mihret", "Mike", "Mikias", "Mirtus", "Mitiku", "Motuma", "Mulu", "Mulualem", "Mulugeta", "Mussie", "Nahom", "Nahum", "Naoed", "Nataye", "Natnael", "Nazwari", "Nebiat", "Nebiyou", "Nega", "Negasi", "Negasso", "Negus", "Neguse", "Nerayo", "Neway", "Noab", "Obi", "Oromigna", "Oromo", "Paulos", "Petros", "Rada", "Raphel", "Rediat", "Retta", "Robel", "Roni", "Ruphael", "Seife", "Selam", "Selassie", "Selassiee", "Senay", "Sentayhu", "Shale", "Shawel", "Sirak", "Sisay", "Sitotaw", "Susenyos", "Susnios", "Tabor", "Tadeioes", "Tadesse", "Tamrat", "Tamru", "Tarik", "Tariku", "Taye", "Tegene", "Teka", "Teklile", "Tell", "Temesgen", "Teodros", "Teoflyos", "Tesfa", "Tesfahun", "Tesfaye", "Teshale", "Teshome", "Tessema", "Tewfeeq", "Tewodros", "Tewodros", "Tewolde", "Theofeleios", "Tibebu", "Tiruneh", "Tolla", "Trefe", "Tsega", "Tsegaye", "Wagaye", "Wakeyo", "Wandafera", "Wasie", "Wedu", "Wendimu", "Werkneh", "Wolitigna", "Workneh", "Wubishet", "Yaaseen", "Yacobe", "Yaee", "Yafet", "Yared", "Yerga", "Yessuf", "Yideg", "Yieshak", "Yihun", "Yilema", "Yisake", "Yitay", "Yitayew", "Yitbarek", "Yitebarke", "Zalelew", "Zeki", "Zelalem", "Zema", "Zere", "Zeru", "Zewedu"];
   const fem = ["Amaresh", "Alayet", "Ayene", "Awetash", "Aberash", "Tidani", "Terhas", "Shashu", "Shefena", "Eden", "Dagem", "Fetsum", "Fekerte", "Frehiwet", "Haregweni", "Malat", "Meseret", "Milya", "Masho ", "Gooi", "Giday", "Belainesh", "Kahsu", "Yemar", "Zafu", "Kidan", "Alemtsehai", "Aregash", "Hiwet", "Hewan", "Kidan", "Luam", "Saba", "Salem", "Selam", "Rahel", "Conjeet", "Seble", "Segen", "Delina", "Abaynesh", "Abeba", "Abebeche", "Abenet", "Abigail", "Abigel", "Abrinet", "Achemyelesh", "Adanech", "Addis", "Addisalem", "Adey", "Adina", "Admas", "Admaswork", "Adowa", "Agere", "Aida", "Akrham", "Alem�nesh", "Alem", "Alemitu", "Alitash", "Almaz", "Altaye", "Always", "Amakelech", "Amara", "Amareche", "Amaresh", "Ambai", "Amina", "Amira", "Amsalech", "Anania", "Andinet", "Andromeda", "Aragaw", "Aregash", "Ariam", "Armani", "Arsemma", "Asamenech", "Asegedeche", "Askale", "Asmawit", "Asnaku", "Asrat", "Astair", "Aster", "Atikilt", "Awet", "Ayana", "Ayantu", "Ayelak", "Ayelech", "Aynalem", "Ayni", "Azeb", "Aziza", "Azmera", "Azyam", "Banchayehu", "Bara", "Bathsheba", "Bedelwa", "Belaynesh", "Belquis", "Berhane", "Beselot", "Beshadu", "Besrat", "Betesida", "Bethania", "Bethel", "Bethelhem", "Beza", "Bezawit", "Bezawork", "Biftu", "Bila", "Bilen", "Birhun", "Birkeye", "Birole", "Biseat", "Bisrat", "Bogalech", "Brehan", "Brehane", "Bruktawit", "Buzinesh", "Candace", "Chamashwork", "Chekolech", "Chuni", "Dagmawit", "Dasach", "Deborha", "Demekech", "Demeku", "Denkenesh", "Derartu", "Desta", "Dinha", "Dinknesh", "Dorcas", "Eddel", "Eden", "Edna", "Ehthun", "Elene", "Eleni", "Elfenesh", "Elsa", "Elsabet", "Elshaday", "Emebet", "Emerta", "Emnet", "Enanny", "Enanu", "Enku", "Enqu", "Eskedare", "Esyete", "Etagegnehu", "Etalemahu", "Etsgenet", "Eyodora", "Fantaye", "Feker", "Fesesework", "Fesesu", "Feven", "Feyise", "Fikre", "Filagot", "Fozeia", "Fozia", "Freole", "Freyhiwot", "Frezer", "Gadesse", "Gadise", "Gedarm", "Gelila", "Genet", "Genzeb", "Gete", "Gobena", "Habiba", "Habtam", "Habte", "Haimanot", "Haimonot", "Hamda", "Hamelmal", "Hamere", "Haregewoin", "Haset", "Hawa", "Hawani", "Haymanot", "Helen", "Helena", "Helina", "Heran", "Hermona", "Hewan", "Hezbalem", "Hirut", "Hiwot", "Hosanna", "Hudad", "Ibsituu", "Ifrah", "Issay", "Jalene", "Jember", "Jeneve", "Jorgo", "Kalkidan", "Kebebushe", "Kebedech", "Kedamawit", "Keleb", "Kelemework", "Kendi", "Kidan", "Kidist", "Kifle", "Kiya", "Konjit", "Kuleni", "Kutre", "Lakech", "Lalla", "Layla", "Leila", "Lelo", "Lemlem", "Leyish", "Leyla", "Lia", "Lidya", "Lielit", "Light", "Lishan", "Liyou", "Louam", "Luam", "Lubaba", "Lube", "Lula", "Lulit", "Mahabuba", "Mahalet", "Mahdere", "Maidote", "Majo", "Makda", "Makeda", "Mamitu", "Mare", "Mariame", "Martha", "Mascara", "Masresha", "Medhanit", "Meharene", "Mehiret", "Mehret", "Mekdella", "Mekdes", "Mekdi", "Meklit", "Melat", "Melkam", "Melkamnesh", "Melke", "Mena", "Menen", "Meraffe", "Meron", "Meseret", "Meskerm", "Mestawot", "Metasebiya", "Mihret", "Mimi", "Miniya", "Mintesinswat", "Mirabe", "Miriam", "Misgana", "Misrak", "Mistire", "Muhaba", "Muluken", "Mulunesh", "Muna", "Munit", "Nanni", "Naomi", "Nardose", "Nashrat", "Nassissie", "Nebiat", "Nigat", "Nigist", "Nishan", "Nunu", "Oromigna", "Oromo", "Ozoro", "Persinna", "Rahel", "Rahnia", "Rakeb", "Rashida", "Redeat", "Rediet", "Rekik", "Ruth", "Saba", "Safia", "Safiyeh", "Saida", "Salayish", "Samrawit", "Sara", "Seble", "Sefanit", "Selam", "Selamawit", "Selassie", "Semira", "Senayit", "Serkadis", "Serkalem", "Serwit", "Sessen", "Sewit", "Shanani", "Sheba", "Shemsia", "Shukara", "Simret", "Sinidu", "Sinkinesh", "Sisay", "Sitina", "Sitota", "Sofia", "Solome", "Sosinna", "Tadelech", "Taitu", "Tarik", "Tariqua", "Tavavich", "Tayech", "Tegegenech", "Tegegnech", "Temunite", "Tena", "Tersit", "Teru", "Teruworq", "Tesfanesh", "Tesfaye", "Tigist", "Tigrian", "Tigrigna", "Tihun", "Tihute", "Tilahun", "Tinadem", "Tinsae", "Tirunesh", "Tizita", "Tseday", "Tsedenia", "Tsega", "Tsehai", "Tsehay", "Tsigereda", "Tsion", "Tutu", "Twebesta", "Wagaye", "Waletta", "Welkite", "Worknesh", "Worqnesh", "Wubay", "Wubete", "Wubrist", "Wudasee", "Yamarshet", "Yehudit", "Yemeserach", "Yenenesh", "Yeneneshe", "Yesem", "Yeshi", "Yeshialem", "Yetabresh", "Yework", "Yeworkeweha", "Yezerashe", "Yimenashu", "Yirukemisrake", "Yodit", "Yohanna", "Zahera", "Zauditu", "Zawdie", "Zeinaba", "Zeleke", "Zema", "Zena", "Zenash", "Zenaye", "Zenebework", "Zenha", "Zewdenesh", "Zewditu", "Zewdnesh", "Zimenew", "Zubeda", "Zufan", "Zufanesh"];
@@ -35,12 +16,13 @@ garundi.name = function (type) {
       }
       names = names1[rnd] + " " + masc[rnd2] + " " + masc[rnd3];
   }
-  console.log(names)
+  return names
 }
 garundi.male = function () {return this.name(male)}
 garundi.female = function () {return this.name(female)}
 
 const keleshita = {}
+keleshita.culture = 'keleshita'
 keleshita.name = function (type) {
 
   const turkish = (type)=>{
@@ -57,7 +39,7 @@ keleshita.name = function (type) {
       names = nm1[rnd] + " " + nm3[rnd2]
     }
 
-    console.log(names)
+    return names
   }
   const persian = (type)=>{
     const nm1 = ["Abbas", "Afshin", "Ahmad", "Akbar", "Ali", "Ali Reza", "Amin", "Amir", "Amir Ali", "Amir Hossein", "Amir Mohammad", "Amir Reza", "Anooshirvan", "Arash", "Aref", "Arman", "Arsalan", "Arzhang", "Asghar", "Aziz", "Babak", "Bagher", "Bahman", "Bahram", "Bairam", "Behnam", "Behrad", "Behrouz", "Behzad", "Benyamin", "Bijan", "Borzou", "Changiz", "Dariush", "Davoud", "Ebrahim", "Ehsan", "Enayat", "Erfan", "Esfandiyar", "Esmaeel", "Faramarz", "Farhad", "Fariborz", "Farid", "Farrokh", "Farzad", "Farzin", "Fazel", "Ferdous", "Firooz", "Freydoun", "Habib", "Hadi", "Hamed", "Hamid", "Hamidreza", "Hashem", "Hassan", "Hesam", "Heshmat", "Heydar", "Homayoun", "Hooman", "Hossein", "Houshang", "Iraj", "Jaffar", "Jahangir", "Jallal", "Jamshid", "Javad", "Kambiz", "Kamran", "Kamyar", "Kannan", "Karim", "Kaveh", "Kazem", "Keyhan", "Keykavous", "Khashayar", "Khosrow", "Kioumars", "Kooroush", "Latif", "Mahdi", "Mahyar", "Majid", "Mamad", "Mani", "Manouchehr", "Mansour", "Mazyar", "Mehdi", "Mehran", "Mehrdad", "Meysam", "Milad", "Moein", "Mohammad Ali", "Mohammad Reza", "Mohsen", "Mojtaba", "Morteza", "Mostafa", "Nader", "Naghi", "Naser", "Nima", "Nouzar", "Nozar", "Omid", "Parsa", "Parviz", "Payam", "Pejman", "Peyman", "Pouria", "Pouya", "Qobad", "Ramin", "Rasoul", "Reza", "Rostam", "Sadeq", "Saeed", "Sahand", "Salar", "Salman", "Sam", "Saman", "Sasan", "Sattar", "Sepand", "Shadmehr", "Shahab", "Shahin", "Shahram", "Shapoor", "Siamak", "Siavash", "Sina", "Sirvan", "Soheil", "Sohrab", "Soroosh", "Taghi", "Vahid", "Youssef", "Zakaria"];
@@ -73,7 +55,7 @@ keleshita.name = function (type) {
       names = nm1[rnd] + " " + nm3[rnd2];
     }
 
-    console.log(names)
+    return names
 
   }
   const assyrian = (type)=>{
@@ -88,20 +70,20 @@ keleshita.name = function (type) {
       names = nm1[rnd]
     }
 
-    console.log(names)
+    return names
   }
   const languages_base = ['turkish', 'persian', 'assyrian']
   const number = random_number(0, languages_base.length)
   console.log(languages_base[number])
   switch (languages_base[number]) {
     case 'turkish':
-        turkish(type)
+        return turkish(type)
       break;
     case 'persian':
-        persian(type)
+        return persian(type)
       break;
     case 'assyrian':
-        assyrian(type)
+        return assyrian(type)
       break;
     default:
       break;
@@ -111,14 +93,15 @@ keleshita.male = function () {return this.name(male)}
 keleshita.female = function () {return this.name(female)}
 
 const kellid = {}
+kellid.culture = 'kellid'
 kellid.name = function (type) {
   const fem = ['Anna','Annet','Bala','Balen','Balka','Barki','Belka','Besket','Dagur','Dala','Dalit','Darki','Darla','Desla','Elka','Fana','Fanki','Faren','Jannet','Nelit','Nelka','Salik','Shana','Shelit','Shelka','Shen','Velka','Veska','Yanik','Yela','Dalik','Dana','Danki','Danna','Daret','Deshki','Elur','Eshik','Eshka','Fanka','Fanla','Fannet','Farka','Felka','Janna','Jeshik','Kesla','Lelit','Seshen','Sesla','Vala','Vanet','Veshka','Yanna','Yannet','Yelet','Agik','Anki','Bannen','Barka','Belet','Dalen','Dalka','Dalur','Eshki','Janka','Kesha','Keshik','Seska','Shanka','Shela','Valit','Vanka','Varit','Varka','Vesha','Veski','Vesla','Yala','Yanet','Yelka','Yelki','Deshik','Fanna','Fannik','Janla','Jeshka','Jeska','Kala','Kalit','Lelka','Nela','Nelki','Neshki','Vanik','Vanla','Velik','Yanka','Yelen','Annen','Annka','Banet','Belit','Dalla','Darit','Deshen','Farla','Janen','Janet','Jannla','Kalet','Kalka','Lesen','Lesla','Salka','Valka','Yalka','Banna','Belik','Beska','Fanet','Jana','Jannki','Jelet','Jeski','Kalla','Kalur','Nagur','Nala','Narla','Seshki','Varla','Balet','Balik','Balit','Belen','Besla','Danet','Deshka','Fannka','Janki','Leshki','Nalla','Narki','Nelet','Valla','Veshik','Yannka','Bannla','Beshka','Dannet','Desket','Jesen','Keshka','Lela','Leshik','Naret','Neska','Sala','Varen','Vesen','Yelik','Anka','Banka','Danla','Fannen','Fela','Nanla','Narka','Varet','Barit','Darka','Farki','Jannen','Jela','Lelik','Nalka','Narit','Nelen','Seshik','Seski','Shanna','Velet','Yanki','Yelit','Beshki','Farit','Jeshki','Keska','Nannla','Nesket','Vanen','Yanla','Yannik','Banki','Esik','Keshki','Nalen','Shanki','Vesket','Annik','Desha','Jesla','Sesen','Seshka','Vannen','Yana','Yanen']
   const masc = ['Bokek','Brangu','Bref','Brok','Brolog','Doresk','Drog','Drok','Dronam','Dronog','Gram','Grokek','Grom','Gurgo','Huref','Jannga','Janngu','Jorek','Joresk','Kannum','Karon','Kolgu','Kolug','Kolum','Krak','Kron','Nolum','Rolug','Zokom','Zurak','Bannga','Bokak','Brom','Dannog','Desk','Gresk','Grog','Grok','Grum','Jorak','Jorga','Jorgo','Kangu','Kannak','Kargo','Kolesk','Kolga','Korug','Nannga','Rannga','Rolesk','Tokek','Trok','Zanngu','Zanum','Zonam','Banug','Bram','Burum','Ganesk','Gorgo','Gorug','Grug','Hannug','Hurek','Jolog','Jorug','Krok','Rangu','Rannek','Ranngu','Tannga','Turak','Turek','Zannog','Zongu','Zorgu','Drokom','Dronug','Gannam','Ganngu','Gorga','Grak','Grokug','Grolog','Grolum','Horgo','Kranek','Krokom','Nangu','Nannug','Nanug','Rolga','Rolom','Tannak','Tanngu','Tanon','Torug','Turam','Turgo','Bresk','Dannug','Goram','Grangu','Horesk','Hurak','Huresk','Hurog','Kolog','Kolok','Krokak','Nango','Nannom','Narak','Narga','Raref','Zannek','Zannum','Zonug','Zorum','Zurek','Brog','Brokum','Ganom','Ganug','Gurek','Hokum','Jorog','Karak','Karesk','Korgo','Korgu','Kram','Krokam','Nanesk','Nanngo','Nolek','Nolga','Tanga','Tronom','Zonog','Brolug','Gorum','Gronak','Harek','Hurgo','Jolok','Kannug','Koresk','Nanngu','Nanog','Ranum','Rolum','Tannek','Toresk','Trolug','Zokek','Zorug','Borug','Dorug','Drom','Gorek','Gurog','Jannam','Jolum','Korak','Krangu','Nolgu','Rannug','Rolog','Rolok','Tokak','Tokom','Zanek','Zokak','Zongo','Bokug','Bronak','Gangu','Goresk','Grek','Hanog','Horum','Kargu','Korek','Tangu','Tanum','Zonok','Borum','Brak','Branek','Branum','Brokak','Danngu','Granek','Granga','Gronam','Harga','Kranga','Kronga','Nanga','Naresk','Nolug','Tannom','Tokug','Zonon','Zuresk','Banngu','Burak','Dorgo','Granug','Grolok','Hanum','Kranug','Krom','Rarek','Tanngo','Tanok','Zangu','Zannon']
 
   if (type == female) {
-    console.log(fem[random_number(0, fem.length)])
+    return fem[random_number(0, fem.length)]
   } else {
-    console.log(masc[random_number(0, masc.length)])
+    return masc[random_number(0, masc.length)]
   }
 
 }
@@ -132,9 +115,9 @@ mwangi.zenj = (type)=>{
     const fem = ["Bohlokoa","Bokang","Buang","Dipalediso","Ditshedi","Keneo","Keromang","Lebo","Likeleng","Limpho","Lisebo","Lithole","Makhoko","Maleli","Maleliso","Matlakatsi","Me'abiloe","Mmalesa","Mmathe","Mpho","Nalediso","Nalefu","Ntseho","Ntso","Nyakala","Ramohelo","Ramona","Refiloe","Refilwe","Relediso","Araballo","Bohlokwa","Bonolo","Dipaletso","Ditswe","Khothabile","Kutlwisiso","Letso","Liepo","Likhang","Likhapelo","Lindidwe","Lintle","Malefu","Malesa","Mathapa","Matlakallo","Me'abetswe","Nthabi","Nthabilwe","Paballo","Palesa","Pontle","Pula","Ratso","Re'abisebo","Tebatsi","Thato","Thuthe","Bont'so","Botliso","Diboko","Dimpho","Dithole","Ditselani","Itumeleng","Letloisiso","Liboko","Likelediso","Litswano","Maletso","Matso","Matsoe","Mookho","Mosa","Moselane","Nalesa","Paleli","Puleng","Qeneoue","Releng","Tebello","Topollo","Tsepiso","Amohelo","Katle","Keneuwe","Likeng","Matsheho","Mmatja","Mpone","Ntse","Ntswe","Oarona","Pabang","Qenehelani","Re'abi","Seeng","Seengkeng","Shoe","Thatshedi","Thutheho","Toko","Tshepiso","Tshepo","Tshepollo","Bophelani","Dikelebo","Itumelo","Kamohelo","Kamona","Katlakallo","Kenehelo","Khauhelo","Likhapa","Lipaleshoe","Litseho","Mariha","Mathapelo","Mathe","Moiponeng","Motloanelo","Nyakallo","Re'abiloe","Rethabiloe","Tebatsoe","Tiiseng","Tokolotle","Tsheho","Basetsatso","Dimakatsi","Felleng","Kutlo","Likeledi","Likeleli","Lisetsatse","Makhokoa","Mamelo","Matla","Me'abilwe","Mmampe","Mohang","Mookhoko","Motle","Nthapelo","Qeneo","Tebatso","Tiisebo","Tlhoko","Tumeleng","Arabang","Bonoloho","Bontle","Dikeng","Disebo","Kutlotso","Likengkeng","Majobo","Me'abetsoe","Moratu","Motliso","Nthato","Ntseli","Ntsoaki","Re'abetswe","Tlhokoloho","Tumello","Dineo","Disebohile","Ditswano","Kananelo","Katla","Kutlwano","Matle","Me'abetso","Mohauhelo","Nana","Nkhetheho","Nthapa","Palefu","Re'abilwe","Basetswe","Botle","Dipaletse","Ditso","Fumang","Leratuoa","Letsatsi","Mamelleng","Matlakala","Me'abi","Mmaseretso","Nanane","Pont'so","Reledi","Thatsebo","Dikgang","Letse","Lineo","Litsebo","Mampe","Mathati","Matseho","Mmalefu","Motleho","Nkhethati","Pulane","Ratu","Rethehoana","Dikelediso","Ditho","Kutloisiso","Kutlotleho","Letlotso","Libokoloho","Likelebo","Litse","Matheho","Mmaleshoe","Nthatse","Phuto","Pulengkeng","Thati"]
 
     if (type == female) {
-      console.log(fem[random_number(0, fem.length)])
+      return fem[random_number(0, fem.length)]
     } else {
-      console.log(masc[random_number(0, masc.length)])
+      return masc[random_number(0, masc.length)]
     }
   
   }
@@ -143,9 +126,9 @@ mwangi.bonuwat_mauxi = (type)=>{
     const fem = ["Adhama (glory)", "Adia (a gift from God)", "Afiya (health)", "Aisha (life)", "Aishia (life)", "Akina (relations)", "Aleela (she cries)", "Aluna (come here)", "Amana (to believe)", "Amanika (trustworthy)", "Andaiye (daughter comes home)", "Angalia (alert and observant)", "Arusi (born during a wedding)", "Ashura (born during month of Ashur)", "Asya (born during time of grief)", "Atiena (guardian of the night)", "Ayah (bright)", "Ayubu (patience in suffering)", "Bahati (luck)", "Bakari (noble promise)", "Baraka (blessing)", "Barika (success)", "Bavana (clear knowledge)", "Bayinika (manifest clarity)", "Budhya (enlightened one)", "Busara (practical wisdom)", "Chagina (brave one)", "Chanua (blossom)", "Chiku (chatterer)", "Chinira (God receives)", "Chriki (blessing)", "Dafina (treasure)", "Dalia (gentle)", "Dalila (gentle)", "Dhamiria (thoughtful aim)", "Dinka (people)", "Elea (clear)", "Elewa (understands)", "Elimisha (teaches knowledge)", "Endana (to love unconditionally)", "Endelea (becomes famous)", "Fanaka (succeeds)", "Faraji (consolation)", "Farijika (console and help)", "Fatuma (weaned)", "Fikira (with deep thoughts)", "Gethera (harvest)", "Goma (joyful dance)", "Hadiya (gift)", "Halima (gift)", "Halina (gentle)", "Halisi (genuine)", "Haoniyao (born during a quarrel)", "Hasana (she arrived first)", "Hasanati (good)", "Hasina (good)", "Hawa (longing)", "Heshima (respect)", "Himaya (protection)", "Hodari (strong)", "Huseina (she arrived first)", "Imani (trust)", "Imara (strong one)", "Imarisha (establish and stabilize)", "Inira (to sing)", "Inithia (leads in song and dance)", "Issa (the Lord's my salvation)", "Itanya (hope)", "Jaha (dignity)", "Jahaira (dignified)", "Jama (friend)", "Jamaa (relation)", "Jamani (friend)", "Jamba (a hero)", "Jehlani (strong)", "Jiona (glow with pride)", "Julisha (gives advice)", "Kakena (the happy one)", "Kalere (short woman)", "Kaluwa (forgotten one)", "Kamara (moonlight)", "Kamaria (like the moon)", "Kanene (important thing)", "Kanika (black cloth)", "Kanisa (a church)", "Karama (honor)", "Kenithia (joyful one)", "Kenura (joy)", "Kesi (born during difficult times)", "Khadija (born prematurely)", "Kiama (magic)", "Kiania (the dawn)", "Kibibi (little lady)", "Kichea (the sun)", "Kiira (the dawn)", "Kijakazi (your life is owed to us)", "Kilinda (protector)", "Kinaya (independence)", "Kinjia (the way)", "Kito (precious stone)", "Koffi (born on a Friday)", "Kudio (born on a Monday)", "Kuende (evolution)", "Kwanzaa (feast of first fruits)", "Kwashi (born on a Thursday)", "Lindana (the defender)", "Lindia (the defender)", "Lisha (to cherish)", "Madini (a gem)", "Mahiri (skillful and clever)", "Majda (glorious)", "Maji (water)", "Majida (honor)", "Malika (angel)", "Maliza (accomplishment)", "Malkia (queen)", "Maridhia (satisfied)", "Marijani (coral)", "Marini (pretty)", "Mashika (born during rainy season)", "Masika (born during rainy season)", "Maskini (poor)", "Maulidi (born in Islamic month Maulidi)", "Milima (mountain)", "Mkiwa (orphaned child)", "Msia (wise woman)", "Muraty (friend)", "Mwamini (honest)", "Mwanahamisi (born on a Thursday)", "Mwasaa (timely)", "Mwatabu (born during sorrow)", "Nadira (rare)", "Najuma (abounding in joy)", "Nbushe (the godly one)", "Neema (born during prosperous times)", "Nigesa (born during harvest season)", "Nurisha (enlighten)", "Nyota (star)", "Onyesha (clear)", "Otesha (cultivate the earth)", "Oyana (uplift and inspire)", "Panya (tiny baby)", "Penda (loved)", "Radhiya (agreeable one)", "Rasheda (rightly guided)", "Rashida (rightly guided)", "Rasida (rightly guided)", "Raziya (agreeable)", "Rehema (compassion)", "Risala (messenger)", "Rukiya (she rises up)", "Saada (help)", "Safika (to set right)", "Safiri (a journey)", "Salama (peaceful one)", "Sanura (kitten)", "Sauda (beautiful and dark-skinned)", "Shani (wonderful)", "Shanny (wonderful)", "Shauri (advise)", "Shauriana (advise)", "Sikudhani (a surprise)", "Siti (respected woman)", "Subira (patience)", "Taabu (troubles)", "Tabara (prosperity)", "Taji (a crown)", "Tamu (sweet & delightful)", "Therania (bright shine)", "Tia (respect)", "Tisa (ninth-born)", "Tuliza (one who's calm)", "Ujamaa (fellowship)", "Ujana (youth)", "Umija (unity)", "Usia (wisdom)", "Waseme (let them talk)", "Winda (hunter)", "Zahra (flower)", "Zaida (the better one)", "Zakia (smart)", "Zakiya (intelligent one)", "Zawadi (a gift)", "Zawati (a gift)", "Zuri (beautiful)", "Zuwena (good)"];
 
     if (type == female) {
-      console.log(fem[random_number(0, fem.length)])
+      return fem[random_number(0, fem.length)]
     } else {
-      console.log(masc[random_number(0, masc.length)])
+      return masc[random_number(0, masc.length)]
     }
   }
 mwangi.bekyar = (type)=>{
@@ -153,26 +136,27 @@ mwangi.bekyar = (type)=>{
     const fem = ["A'isha", "Adia", "Aishatu", "Aminah", "Arria", "Arziki", "Asabe", "Asma'u", "Assibi", "Atikah", "Auta", "Bahijjah", "Balaraba", "Baturiya", "Cof", "Coffee", "Coffi", "Coffie", "Colee", "Coley", "Colie", "Danuwa", "Daurama", "Delu", "Dura", "Durah", "Durrah", "Fa'idah", "Fa'iqah", "Fa'izah", "Fara", "Faraa", "Fari", "Farih", "Farra", "Farry", "Fatima", "Fatimah", "Fatuma", "Fayola", "Femi", "Finesse", "Finn", "Gaddo", "Gambo", "Gerda", "Gimbya", "Gobad", "Gogo", "Gzifa", "Habiba", "Habibah", "Habika", "Hada", "Hafsah", "Halimah", "Hamidah", "Hanna", "Hassana", "Hazika", "Hola", "Hova", "Husiana", "Huso", "Hussaina", "Ice", "Ifama", "Ifeoma", "Ifiok", "Ifrah", "Ijaba", "Iman", "Ina", "Iverem", "Iyangura", "Izefia", "Izza", "Jabulela", "Jaha", "Jahzara", "Jamilah", "Jummai", "Kaka", "Keyara", "Khadija", "Khadijah", "Khamees", "Khamisa", "Khari", "Khatiti", "Kia", "Kianga", "Kibibi", "Kiden", "Kifle", "Kiho", "Kijana", "Kima", "Kimmy", "Kinfe", "Kione", "Kirabo", "Kiros", "Kisser", "Kitoko", "Koda", "Koko", "Kubra", "Kuron", "Kwesi", "Kya", "Ladi", "Lami", "Lantana", "Laraba", "Larai", "Latifah", "Lawanna", "Layla", "Lehana", "Lina", "Lisha", "Lubabah", "Maimuna", "Malomo", "Mandze", "Manica", "Mansa", "Mansurah", "Mapenzi", "Mardea", "Mariama", "Mariatu", "Marka", "Markabo", "Maryam", "Mashaka", "Massassi", "Mawunyaga", "Meria", "Messina", "Mhina", "Mikaili", "Milandu", "Miniya", "Miyanda", "Monifa", "Montsho", "Muna", "Musoke", "Mutia", "Myeisha", "Na'imah", "Nabilah", "Nadifa", "Nadira", "Nafisa", "Nafisah", "Nafuna", "Nagesa", "Nailah", "Naiser", "Naja", "Najja", "Naki", "Nakima", "Nala", "Naliaka", "Nalo", "Namazzi", "Nana", "Nangila", "Nantale", "Nasha", "Nashwa", "Nasiche", "Natine", "Nazi", "Ndila", "Neema", "Nehanda", "Neliah", "Nia", "Nini", "Njemile", "Nkechi", "Nuru", "Nyack", "Nyaga", "Nyako", "Nyeki", "Nyoka", "Okimma", "Oafe", "Oba", "Obax", "Okal", "Okapi", "Okoth", "Ola", "Olayinka", "Olisa", "Onaedo", "Oni", "Ontibile", "Orma", "Pangi", "Panya", "Panyin", "Pemba", "Phenyo", "Qwara", "Raashida", "Rabi'ah", "Rabia", "Rach", "Radhiya", "Rafiki", "Rahmah", "Ramla", "Raniesha", "Rashidah", "Raziya", "Rehema", "Rena", "Renah", "Renna", "Ruqayyah", "Saada", "Sade", "Sadiki", "Sadio", "Safara", "Safia", "Safina", "Safiyah", "Saida", "Saidah", "Saidi", "Sakinah", "Salama", "Salihah", "Salimah", "Samirah", "Sanura", "Sarama", "Saran", "Sarda", "Sarki", "Sauda", "Seghen", "Sekai", "Selam", "Selamawit", "Selas", "Semira", "Shukriyah", "Sumayyah", "Talatu", "Tani", "Zahrah", "Zainab", "Zakiyyah", "Zaytun", "Zorra", "Zubaydah"];
 
     if (type == female) {
-      console.log(fem[random_number(0, fem.length)])
+      return fem[random_number(0, fem.length)]
     } else {
-      console.log(masc[random_number(0, masc.length)])
+      return masc[random_number(0, masc.length)]
     }
 
   }
 
+  mwangi.culture = 'mwangi'
 mwangi.name = function (type) {
   const languages = ['bekyar', 'bonuwat_mauxi', 'zenj']
   const number = random_number(0, languages.length)
   console.log(languages[number])
   switch (languages[number]) {
     case 'bekyar':
-        mwangi.bekyar(type)
+        return mwangi.bekyar(type)
       break;
     case 'bonuwat_mauxi':
-        mwangi.bonuwat_mauxi(type)
+        return mwangi.bonuwat_mauxi(type)
       break;
     case 'zenj':
-        mwangi.zenj(type)
+        return mwangi.zenj(type)
       break;
     default:
       break;
@@ -182,6 +166,7 @@ mwangi.male = function () {return this.name(male)}
 mwangi.female = function () {return this.name(female)}
 
 const nidalês = {}
+nidalês.culture = 'nidalês'
 nidalês.name = function (type, language) {
   const italian = (type)=>{
     const nm1 = ["Abaco", "Abbondanzio", "Abbondio", "Abdone", "Abelardo", "Abele", "Abenzio", "Abibo", "Abramio", "Abramo", "Acacio", "Acario", "Accursio", "Achille", "Acilio", "Aciscolo", "Acrisio", "Adalardo", "Adalberto", "Adalfredo", "Adalgiso", "Adalrico", "Adamo", "Addo", "Adelardo", "Adelberto", "Adelchi", "Adelfo", "Adelgardo", "Adelmo", "Adeodato", "Adolfo", "Adone", "Adriano", "Adrione", "Afro", "Agabio", "Agamennone", "Agape", "Agapito", "Agazio", "Agenore", "Agesilao", "Agostino", "Agrippa", "Aiace", "Aidano", "Aimone", "Aladino", "Alamanno", "Alano", "Alarico", "Albano", "Alberico", "Alberto", "Albino", "Alboino", "Albrico", "Alceo", "Alceste", "Alcibiade", "Alcide", "Alcino", "Aldo", "Aldobrando", "Aleandro", "Aleardo", "Aleramo", "Alessandro", "Alessio", "Alex", "Alfio", "Alfonso", "Alfredo", "Algiso", "Alighiero", "Almerigo", "Almiro", "Aloisio", "Alvaro", "Alviero", "Alvise", "Amabile", "Amadeo", "Amando", "Amanzio", "Amaranto", "Amato", "Amatore", "Amauri", "Ambrogio", "Ambrosiano", "Amedeo", "Amelio", "Amerigo", "Amico", "Amilcare", "Amintore", "Amleto", "Amone", "Amore", "Amos", "Ampelio", "Anacleto", "Andrea", "Angelo", "Aniceto", "Aniello", "Annibale", "Ansaldo", "Anselmo", "Ansovino", "Antelmo", "Antero", "Antimo", "Antino", "Antioco", "Antonello", "Antonio", "Apollinare", "Apollo", "Apuleio", "Aquilino", "Araldo", "Aratone", "Arcadio", "Archimede", "Archippo", "Arcibaldo", "Ardito", "Arduino", "Aresio", "Argimiro", "Argo", "Arialdo", "Ariberto", "Ariele", "Ariosto", "Aris", "Aristarco", "Aristeo", "Aristide", "Aristione", "Aristo", "Aristofane", "Aristotele", "Armando", "Arminio", "Arnaldo", "Aronne", "Arrigo", "Arturo", "Ascanio", "Asdrubale", "Asimodeo", "Assunto", "Asterio", "Astianatte", "Ataleo", "Atanasio", "Athos", "Attila", "Attilano", "Attilio", "Auberto", "Audace", "Augusto", "Aureliano", "Aurelio", "Auro", "Ausilio", "Averardo", "Azeglio", "Azelio", "Bacco", "Baldassarre", "Balderico", "Baldo", "Baldomero", "Baldovino", "Barbarigo", "Bardo", "Bardomiano", "Barnaba", "Barsaba", "Barsimeo", "Bartolo", "Bartolomeo", "Basileo", "Basilio", "Bassiano", "Bastiano", "Battista", "Beato", "Bellino", "Beltramo", "Benedetto", "Beniamino", "Benigno", "Benito", "Benvenuto", "Berardo", "Berengario", "Bernardo", "Beronico", "Bertoldo", "Bertolfo", "Biagio", "Bibiano", "Bindo", "Bino", "Birino", "Bonagiunta", "Bonaldo", "Bonaventura", "Bonavita", "Bonifacio", "Bonito", "Boris", "Bortolo", "Brancaleone", "Brando", "Bruno", "Bruto", "Caino", "Caio", "Calanico", "Callisto", "Calogero", "Camillo", "Candido", "Cantidio", "Canziano", "Carlo", "Carmelo", "Carmine", "Caronte", "Carponio", "Casimiro", "Cassiano", "Cassio", "Casto", "Cataldo", "Catullo", "Cecco", "Cecilio", "Celso", "Cesare", "Cesario", "Cherubino", "Chiaffredo", "Christian", "Cino", "Cipriano", "Cirano", "Ciriaco", "Cirillo", "Cirino", "Ciro", "Clarenzio", "Claudio", "Cleandro", "Clemente", "Cleonico", "Climaco", "Clinio", "Clodomiro", "Clodoveo", "Colmanno", "Colmazio", "Colombano", "Colombo", "Concetto", "Concordio", "Corbiniano", "Coreno", "Coriolano", "Cornelio", "Coronato", "Corrado", "Cosimo", "Costante", "Costanzo", "Cremenzio", "Crescente", "Crescenzio", "Crespignano", "Crispino", "Cristaldo", "Cristian", "Cristiano", "Cristoforo", "Crocefisso", "Cuniberto", "Cupido", "Daciano", "Dacio", "Dagoberto", "Dalmazio", "Damaso", "Damiano", "Damocle", "Daniele", "Danilo", "Danio", "Dante", "Dario", "Davide", "Davino", "Decimo", "Delfino", "Demetrio", "Democrito", "Demostene", "Deodato", "Desiderato", "Desiderio", "Didimo", "Diego", "Dino", "Diocleziano", "Diodoro", "Diogene", "Diomede", "Dione", "Dionigi", "Dionisio", "Divo", "Dodato", "Domenico", "Domezio", "Domiziano", "Donatello", "Donato", "Doriano", "Doroteo", "Duccio", "Duilio", "Durante", "Eberardo", "Ecclesio", "Edgardo", "Edilberto", "Edmondo", "Edoardo", "Efisio", "Efrem", "Egeo", "Egidio", "Eginardo", "Egisto", "Eleuterio", "Elia", "Eliano", "Elifio", "Eligio", "Elio", "Eliodoro", "Eliseo", "Elita", "Elmo", "Elogio", "Elpidio", "Elvezio", "Elvino", "Emanuele", "Emidio", "Emiliano", "Emilio", "Emmerico", "Empirio", "Endrigo", "Enea", "Enecone", "Ennio", "Enrico", "Enzo", "Eraclide", "Eraldo", "Erardo", "Erasmo", "Erberto", "Ercolano", "Ercole", "Erenia", "Eriberto", "Erico", "Ermanno", "Ermenegildo", "Ermes", "Ermete", "Ermilo", "Erminio", "Ernesto", "Eros", "Esaù", "Esuperio", "Eterie", "Ettore", "Euclide", "Eufebio", "Eufemio", "Eufronio", "Eugenio", "Eusebio", "Euseo", "Eustorgio", "Eustosio", "Eutalio", "Evaldo", "Evandro", "Evaristo", "Evasio", "Everardo", "Evidio", "Evodio", "Evremondo", "Ezechiele", "Ezio", "Fabiano", "Fabio", "Fabrizio", "Famiano", "Fausto", "Fazio", "Fedele", "Federico", "Fedro", "Felice", "Feliciano", "Ferdinando", "Fermiano", "Fermo", "Fernando", "Ferruccio", "Festo", "Fidenziano", "Fidenzio", "Filiberto", "Filippo", "Filomeno", "Fiorenziano", "Fiorenzo", "Flaviano", "Flavio", "Fleano", "Floriano", "Folco", "Fortunato", "Fosco", "Francesco", "Frido", "Frontiniano", "Fulberto", "Fulgenzio", "Fulvio", "Furio", "Furseo", "Fuscolo", "Gabino", "Gabriele", "Gaetano", "Gaglioffo", "Gaio", "Galdino", "Galeazzo", "Galileo", "Gallicano", "Gandolfo", "Garimberto", "Gaspare", "Gastone", "Gaudenzio", "Gaudino", "Gautiero", "Gavino", "Gedeone", "Geminiano", "Generoso", "Genesio", "Gennaro", "Gentile", "Genziano", "Gerardo", "Gerasimo", "Geremia", "Gerino", "Germano", "Gerolamo", "Geronimo", "Geronzio", "Gervasio", "Gesualdo", "Gherardo", "Giacinto", "Giacobbe", "Giacomo", "Giadero", "Giambattista", "Gianbattista", "Giancarlo", "Giandomenico", "Gianfranco", "Gianluca", "Gianluigi", "Gianmarco", "Gianmaria", "Gianmario", "Gianpaolo", "Gianpiero", "Gianpietro", "Gianuario", "Giasone", "Gilberto", "Gildo", "Gillo", "Gineto", "Gioacchino", "Giobbe", "Gioberto", "Giocondo", "Gioele", "Giona", "Gionata", "Giordano", "Giorgio", "Giosuè", "Giosuele", "Giotto", "Giovanni", "Giove", "Gioventino", "Giovenzio", "Girardo", "Girolamo", "Giuda", "Giuliano", "Giulio", "Giuseppe", "Giustiniano", "Giusto", "Glauco", "Goffredo", "Golia", "Gomberto", "Gondulfo", "Gonerio", "Gonzaga", "Gordiano", "Gosto", "Gottardo", "Graciliano", "Grato", "Graziano", "Gregorio", "Grimaldo", "Gualberto", "Gualtiero", "Guelfo", "Guerrino", "Guglielmo", "Guiberto", "Guido", "Guiscardo", "Gumesindo", "Gustavo", "Iacopo", "Iacopone", "Icaro", "Icilio", "Ido", "Iginio", "Igino", "Ignazio", "Igor", "Ilario", "Ildebrando", "Ildefonso", "Illidio", "Illuminato", "Immacolato", "Indro", "Innocente", "Innocenzo", "Ippocrate", "Ippolito", "Ireneo", "Isacco", "Isaia", "Ischirione", "Iside", "Isidoro", "Italo", "Ivano", "Ivanoe", "Ivo", "Ivone", "Ladislao", "Lamberto", "Lancilotto", "Landolfo", "Lanfranco", "Lapo", "Laurentino", "Lauriano", "Lautone", "Lavinio", "Lazzaro", "Leandro", "Leo", "Leonardo", "Leone", "Leonida", "Leonio", "Leonzio", "Leopardo", "Leopoldo", "Letterio", "Liberato", "Liberatore", "Liberio", "Libero", "Liberto", "Liborio", "Lidio", "Lieto", "Lino", "Lisandro", "Livino", "Livio", "Lodovico", "Loreno", "Lorenzo", "Loris", "Luca", "Luciano", "Lucio", "Ludano", "Ludovico", "Luigi", "Macario", "Maccabeo", "Maffeo", "Maggiorino", "Magno", "Maiorico", "Malco", "Mamante", "Mancio", "Manetto", "Manfredo", "Manilio", "Manlio", "Mansueto", "Manuele", "Marcello", "Marciano", "Marco", "Mariano", "Marino", "Mario", "Marolo", "Martino", "Marzio", "Massimiliano", "Massimo", "Matroniano", "Matteo", "Mattia", "Maurilio", "Maurizio", "Mauro", "Medardo", "Medoro", "Melanio", "Melchiade", "Melchiorre", "Melezio", "Menardo", "Menelao", "Meneo", "Mennone", "Mercurio", "Metello", "Metrofane", "Michael", "Michelangelo", "Michele", "Milo", "Minervino", "Mirco", "Mirko", "Mirocleto", "Misaele", "Modesto", "Monaldo", "Monitore", "Moreno", "Mosè", "Muziano", "Namazio", "Napoleone", "Narciso", "Narseo", "Narsete", "Natale", "Nazario", "Nazzareno", "Nazzaro", "Neopolo", "Neoterio", "Nereo", "Nestore", "Nicarete", "Niccolò", "Nicea", "Niceforo", "Niceto", "Nicezio", "Nico", "Nicodemo", "Nicolò", "Nicola", "Niniano", "Nino", "Noè", "Norberto", "Nostriano", "Nunzio", "Oddone", "Oderico", "Odidone", "Odorico", "Olimpio", "Olindo", "Oliviero", "Omar", "Omero", "Onesto", "Onofrio", "Onorino", "Onorio", "Orazio", "Orenzio", "Oreste", "Orfeo", "Orio", "Orlando", "Oronzo", "Orsino", "Orso", "Ortensio", "Oscar", "Osmondo", "Osvaldo", "Otello", "Ottaviano", "Ottavio", "Ottone", "Ovidio", "Paciano", "Pacifico", "Pacomio", "Palatino", "Palladio", "Pammachio", "Pancario", "Pancrazio", "Panfilo", "Pantaleo", "Pantaleone", "Paolo", "Pardo", "Paride", "Parmenio", "Pasquale", "Paterniano", "Patrizio", "Patroclo", "Pauside", "Peleo", "Pellegrino", "Pericle", "Perseo", "Petronio", "Pierluigi", "Piermarco", "Piero", "Piersilvio", "Pietro", "Pio", "Pippo", "Placido", "Platone", "Plinio", "Plutarco", "Polidoro", "Polifemo", "Pollione", "Pompeo", "Pomponio", "Ponziano", "Ponzio", "Porfirio", "Porziano", "Postumio", "Prassede", "Priamo", "Primo", "Prisco", "Procopio", "Prospero", "Protasio", "Proteo", "Prudenzio", "Publio", "Pupolo", "Pusicio", "Quarto", "Quasimodo", "Querano", "Quintiliano", "Quintilio", "Quintino", "Quinziano", "Quinzio", "Quirino", "Radolfo", "Raffaele", "Raffaello", "Raide", "Raimondo", "Rainaldo", "Ramiro", "Raniero", "Ranolfo", "Reginaldo", "Regolo", "Remigio", "Remo", "Remondo", "Renato", "Renzo", "Respicio", "Ricario", "Riccardo", "Richelmo", "Rinaldo", "Rino", "Robaldo", "Roberto", "Rocco", "Rodiano", "Rodolfo", "Rodrigo", "Rolando", "Rolfo", "Romano", "Romeo", "Romero", "Romoaldo", "Romolo", "Romualdo", "Rosario", "Rubiano", "Rufino", "Rufo", "Ruggero", "Ruperto", "Rutilo", "Sabato", "Sabazio", "Sabele", "Sabino", "Saffiro", "Saffo", "Saladino", "Salomè", "Salomone", "Salustio", "Salvatore", "Salvo", "Samuele", "Sandro", "Sansone", "Sante", "Santo", "Sapiente", "Sarbello", "Saturniano", "Saturnino", "Saul", "Saverio", "Savino", "Sebastiano", "Secondiano", "Secondo", "Semiramide", "Semplicio", "Sempronio", "Senesio", "Senofonte", "Serafino", "Serapione", "Sergio", "Servidio", "Serviliano", "Sesto", "Settimio", "Settimo", "Severiano", "Severino", "Severo", "Sico", "Sicuro", "Sidonio", "Sigfrido", "Sigismondo", "Silvano", "Silverio", "Silvestro", "Silvio", "Simeone", "Simone", "Sinesio", "Sinfronio", "Sireno", "Siriano", "Siricio", "Siro", "Sisto", "Soccorso", "Socrate", "Solocone", "Sostene", "Sosteneo", "Sostrato", "Spano", "Spartaco", "Speranzio", "Stanislao", "Stefano", "Stiliano", "Stiriaco", "Surano", "Sviturno", "Taddeo", "Taide", "Tammaro", "Tancredi", "Tarcisio", "Tarso", "Taziano", "Tazio", "Telchide", "Telemaco", "Temistocle", "Teobaldo", "Teodoro", "Teodosio", "Teodoto", "Teogene", "Terenzio", "Terzo", "Tesauro", "Tesifonte", "Tibaldo", "Tiberio", "Tiburzio", "Ticone", "Timoteo", "Tirone", "Tito", "Tiziano", "Tizio", "Tobia", "Tolomeo", "Tommaso", "Torquato", "Tosco", "Tranquillo", "Tristano", "Tulliano", "Tullio", "Turi", "Turibio", "Tussio", "Ubaldo", "Ubertino", "Uberto", "Ugo", "Ugolino", "Uguccione", "Ulberto", "Ulderico", "Ulfo", "Ulisse", "Ulpiano", "Ulrico", "Ulstano", "Ultimo", "Umberto", "Umile", "Uranio", "Urbano", "Urdino", "Uriele", "Ursicio", "Ursino", "Ursmaro", "Valente", "Valentino", "Valeriano", "Valerico", "Valerio", "Valfredo", "Valfrido", "Valtena", "Valter", "Varo", "Vasco", "Vedasto", "Velio", "Venanzio", "Venceslao", "Venerando", "Venerio", "Ventura", "Venustiano", "Venusto", "Verano", "Verecondo", "Verenzio", "Verulo", "Vespasiano", "Vezio", "Vidiano", "Vidone", "Vilfredo", "Viliberto", "Vincenzo", "Vindonio", "Vinebaldo", "Vinfrido", "Vinicio", "Virgilio", "Virginio", "Virone", "Vitale", "Vitalico", "Vito", "Vittore", "Vittorio", "Vivaldo", "Viviano", "Vladimiro", "Vodingo", "Volfango", "Vulmaro", "Vulpiano", "Vunibaldo", "Zabedeo", "Zaccaria", "Zaccheo", "Zanobi", "Zefiro", "Zena", "Zenaide", "Zenebio", "Zeno", "Zenobio", "Zenone", "Zetico", "Zoilo", "Zosimo"];
@@ -197,7 +182,7 @@ nidalês.name = function (type, language) {
       names = nm1[rnd] + " " + nm3[rnd2]; 
     }
 
-    console.log(names)
+    return names
   }
   const roman = (type)=>{
     const nm1 = ["Appius", "Aulus", "Caelus", "Decius", "Decimus", "Faustus", "Flavius", "Gaius", "Caius", "Cnaeus", "Gnaeus", "Kaeso", "Caeso", "Lucius", "Mamercus", "Maximus", "Manius", "Marcus", "Mettius", "Numerius", "Octavianus", "Publius", "Quintus", "Secundus", "Septimus", "Servius", "Sextus", "Spurius", "Tertius", "Tiberius", "Titus", "Agrippa", "Amulius", "Arruns", "Camillus", "Canus", "Cossus", "Drusus", "Gallus", "Herius", "Hostus", "Lar", "Lars", "Marcellus", "Nonus", "Opiter", "Oppius", "Paulus", "Paullus", "Postumius", "Potitus", "Primus", "Proclus", "Proculus", "Sisenna", "Tullus", "Vel", "Vibius", "Vopiscus", "Amulius", "Appius", "Augustus", "Aulus", "Caius", "Cassius", "Decius", "Flavius", "Galerius", "Gallio", "Julianus", "Kaeso", "Lucius", "Manius", "Marcus", "Numerius", "Oppius", "Placus", "Publius", "Quintis", "Quintus", "Secundus", "Servius", "Sextus", "Spurius", "Tertius", "Tiberius", "Titus"];
@@ -217,20 +202,20 @@ nidalês.name = function (type, language) {
       names = nm1[rnd] + " " + nm2[rnd2] + " " + nm3[rnd3];
     }
 
-    console.log(names)
+    return names
   }
   if (language) {
-    roman(type)
+    return roman(type)
   } else {
     const languages_base = ['roman', 'italian']
     const number = random_number(0, languages_base.length)
     console.log(languages_base[number])
     switch (languages_base[number]) {
       case 'roman':
-          roman(type)
+          return roman(type)
         break;
       case 'italian':
-          italian(type)
+          return italian(type)
         break;
       default:
         break;
@@ -241,14 +226,15 @@ nidalês.male = function () {return this.name(male)}
 nidalês.female = function () {return this.name(female)}
 
 const shoanti = {}
+shoanti.culture = 'shoanti'
 shoanti.name = function (type) {
   const masc = ['Adahy','Ashkii','Atsadi','Bidziil','Bilah','Bisahali','Chaska','Cheasequah','Dohana','Dustu','Eyani','Gawonii','Kangya','Kilchin','Klah','Matoska','Naalnisin','Napa','Ogaleeska','Setimika','Skah','Tahoma','Takoda','Takota','Unaduti','Wahchii','Wana','Waya','Wesa','Wohankoowe','Adoeete','Atsan','Atsidi','Chanzee','Enapa','Howah','Kanuna','Lallo','Mika','Ohanzee','Ohitekah','Otakuwa','Sequoyah','Shilah','Shiltheeni','Shiye','Sinte','Sintonka','Tahatanta','Teete','Tooanta','Tooantuh','Tsela','Tsiyi','Wanikiya','Aditsadi','Akecheii','Degotoga','Eska','Hota','Mahpee','Mato','Naalnish','Nantuh','Onacona','Otaktay','Pezi','Setan','Tahatangya','Tapco','Wahkan','Wanikiy','Wohana','Aditsan','Ahiga','Chate','Chayton','Dakota','Dohatan','Kohana','Mammedaty','Maza','Nakan','Ohiye','Sani','Sanish','Sike','Sintonga','Toke','Wahkah','Wamblee','Wani','Whakan','Yiskah','Ahuli','Atagulkalu','Attakte','Canosa','Cetan','Dohalanita','Gomda','Loota','Tahetan','Tashtay','Taya','Tayaya','Tokotah','Wanita','Wohate','Yansa','Akechetan','Chatangee','Dighin','Gaagii','Howahkah','Kohate','Odakoda','Ohiyesa','Paytah','Shilagaana','Sichaad','Sichetan','Takotah','Tato','Teetonga','Tokota','Tsoai','Yani','Yiska','Apiationu','Bisahatan','Chaytah','Coowah','Dakotah','Dighinton','Hansa','Niyol','Wambleeska','Whakai','Akecheton','Apiatan','Bilagaana','Chatan','Hastiin','Nanta','Yanisin','Yanska','Howahkan','Mahkan','Shappa','Tahali','Wanagee','Weayayaya','Apiatangya','Dohanzee','Dohate','Dohosa','Kilchii','Kohankoowe','Maton','Nakai','Satan','Tahetangya','Tahetantan','Wanageeska','Yanikiy','Enapay','Napay','Napayshni','Nasti','Otakulla','Tayayayani','Yahton','Kangee','Mahkoowah','Ogalee','Otakte','Shiyesa','Taheta','Wambleesha','Ceta','Coowe','Diwali','Guiton','Tatonka','Yahtonka','Atohi','Cetanta','Hanska','Matonga','Matoskah','Yahto','Adoeeton','Eyanita','Eyanosan','Nantan','Sicheii','Wanahto','Wanisin','Yahtonga','Yanikiya','Hasti','Ohankoowah','Tahalani','Tahatan','Tashunka','Taton','Wayanosan']
   const fem = ['Adsilahima','Ahyoka','Anaba','Angpetu','Awinita','Bonita','Chumani','Haloke','Hiawassee','Kangee','Kimimela','Makayda','Mana','Nahi','Noya','Sahkyo','Shadi','Shima','Snana','Snanaba','Takchawee','Unega','Usdi','Wenona','Wichahpi','Winona','Woya','Yazhi','Yona','Zonta','Agaskawee','Anpaytoo','Asdza','Ayita','Dezba','Dibe','Doli','Goga','Hanta','Maka','Makawee','Mapiya','Mina','Mosi','Naschawee','Otekah','Ptaywee','Taya','Tooantuh','Wachiwi','Adsila','Adsilahi','Doba','Dowanhowee','Doya','Eyota','Gali','Makanda','Nahima','Nascha','Niyol','Salalila','Shimanita','Tooanta','Washnah','Washta','Wenonah','Wihaka','Wihakawee','Wita','Ziracuny','Altsoba','Awenasa','Chapa','Chapawee','Chlumani','Inola','Macawi','Macha','Machahpi','Magaskawee','Ojintka','Sasa','Shideezhi','Tsomah','Tsula','Amadahy','Atsi','Gola','Kamamama','Machawee','Manaba','Wakanda','Weayani','Wicha','Yanaba','Ayitashta','Naschahpi','Ojinjintka','Sahpooly','Takchahpi','Talutah','Tayanita','Weeko','Yana','Hantaywee','Sahpi','Salali','Shimani','Sitsila','Wakayda','Weaya','Atsila','Nahimasa','Ptaysanwee','Shimasani','Takcha','Wacha','Weayayaya','Wihakanda','Agasga','Hantuh','Machawi','Wakawee','Weayanita','Ahawee','Bonitashta','Ehawee','Galila','Magasga','Ahawi','Ooljee','Shimasa','Witashnah','Kama','Sasanwee','Tayayayaya','Winonah','Adoette','Kamamamama','Machiwi','Nahimani','Ptaysani','Zontaywee','Chumana','Sitsi','Wichawee','Wihakayda','Chlumanita','Waka','Chlumana','Zontaysani','Ehawi','Tayayani','Ayitashnah','Kamama','Nahimasani']
 
   if (type == female) {
-    console.log(fem[random_number(0, fem.length)])
+    return fem[random_number(0, fem.length)]
   } else {
-    console.log(masc[random_number(0, masc.length)])
+    return masc[random_number(0, masc.length)]
   }
 
 }
@@ -256,6 +242,7 @@ shoanti.male = function () {return this.name(male)}
 shoanti.female = function () {return this.name(female)}
 
 const taldano = {}
+taldano.culture = 'taldano'
 taldano.male = function () {return nidalês.name(male, true)}
 taldano.female = function () {return nidalês.name(female, true)}
 
@@ -276,7 +263,7 @@ tianês.tian_dan = (type)=>{
       names = nm1[rnd1] + " " + nm2[rnd];
     }
 
-    console.log(names)
+    return names
 
   }
 tianês.tian_dtangs = (type)=>{
@@ -294,7 +281,7 @@ tianês.tian_dtangs = (type)=>{
     names = nm1[rnd] + " " + nm3[rnd2];
   }
 
-  console.log(names)
+  return names
 
 }
 
@@ -314,7 +301,7 @@ tianês.tian_hwan = (type)=>{
     names = nm3[rnd2] + " " + nm1[rnd];
   } 
 
-  console.log(names)
+  return names
 
 }
 
@@ -324,9 +311,9 @@ tianês.tian_la = (type)=>{
   const fem = ["Alagh Yid", "Alan", "Alan Ghoa", "Alaqa", "Altan", "Altani", "Altantsetseg", "Altun", "Barghujin", "Battsetseg", "Bayarma", "Bayarmaa", "Berude", "Bolormaa", "Boragchin", "Borte", "Borte Jusin", "Botokhui Targhun", "Budan", "Chagur", "Chakha", "Chambui", "Checheyigen", "Chotan", "Cirina", "Cota", "Cotota", "Dagasi", "Dokuz Khatum", "Dorgene", "Ebegei", "Enebish", "Enkhjargal", "Enkhtuya", "Enkhtuyaa", "Erdenechimeg", "Erdenetungalag", "Ergene", "Etugen Eke", "Ganzorig", "Gerelma", "Ghoa", "Gorbeljin", "Gurbesu", "Hogelun", "Holuikhan", "Hongorzul", "Hujaghur", "Ibakha", "Jaliqai", "Jiguur", "Khünbish", "Khadagan", "Khenbish", "Khogaghchin", "Khojin", "Khongordzol", "Khorijin", "Khugurchin", "Khulan", "Mönkhtsetseg", "Maa", "Maral", "Medekhgüi", "Mide", "Mongoljin", "Munkhtsetseg", "Muunokhoi", "Narangerel", "Narantsetseg", "Narantuyaa", "Narengawa", "Nergüi", "Nomolun", "Odtsetseg", "Odval", "Oghul", "Ogtbish", "Ogul", "Ogul Gaimysh", "Orbei", "Oyunbileg", "Oyunchimeg", "Oyuun", "Oyuunchimeg", "Samga", "Saran", "Sarangerel", "Sarantsatsr", "Sarantsatsral", "Sarantuya", "Sayinaral Qayag", "Sechen", "Seruuntungalag", "Silugukhan Qatakhan", "Silun Gorgelji", "Sokhatai", "Solongo", "Sorghaghtani Beki", "Sorkhaghtani", "Sorocan", "Tegusken", "Temulun", "Temulun Abagai", "Terbish", "Togene", "Toragana", "Tsetsegmaa", "Turakina", "Uranchimeg", "Yesugen", "Yesui", "Yesuntei", "Yisu Qatun", "Yisugei Qatun"];
 
   if (type == female) {
-    console.log(fem[random_number(0, fem.length)])
+    return fem[random_number(0, fem.length)]
   } else {
-    console.log(masc[random_number(0, masc.length)])
+    return masc[random_number(0, masc.length)]
   }
 
 }
@@ -352,7 +339,7 @@ tianês.tian_min = (type)=>{
       names = nm3[rnd] + " " + nm1[rnd2];
   }
 
-  console.log(names)
+  return names
 }
 
 tianês.tian_shu = (type)=>{
@@ -378,7 +365,7 @@ tianês.tian_shu = (type)=>{
       nm1.splice(rnd, 1);
   }
   nm3.splice(rnd2, 1);
-      console.log(names)
+  return names
 
 }
 
@@ -424,15 +411,16 @@ tianês.tian_sing = (type)=>{
   if (culture.length == 2) {
     names = culture[tp]
     name = names[random_number(0, names.length)]
-    console.log(name)
+    return name
   } else {
     name = culture[tp][random_number(0, culture[tp].length)]
     surname = culture[2][random_number(0, culture[2].length)]
-    console.log(`${name} ${surname}`)
+    return `${name} ${surname}`
   }
 
 }
 
+tianês.culture = 'tianês'
 tianês.name = function (type, language) {
 
   const languages_base = ['tian_dan', 'tian_dtangs', 'tian_hwan', 'tian_la', 'tian_min', 'tian_shu', 'tian_sing']
@@ -440,25 +428,25 @@ tianês.name = function (type, language) {
   console.log(languages_base[number])
   switch (languages_base[number]) {
     case 'tian_dan':
-      tianês.tian_dan(type)
+       return tianês.tian_dan(type)
     break
     case 'tian_dtangs':
-      tianês.tian_dtangs(type)
+       return tianês.tian_dtangs(type)
     break
     case 'tian_hwan':
-      tianês.tian_hwan(type)
+       return tianês.tian_hwan(type)
     break
     case 'tian_la':
-      tianês.tian_la(type)
+       return tianês.tian_la(type)
     break
     case 'tian_min':
-      tianês.tian_min(type)
+       return tianês.tian_min(type)
     break
     case 'tian_shu':
-      tianês.tian_shu(type)
+       return tianês.tian_shu(type)
     break
     case 'tian_sing':
-      tianês.tian_sing(type)
+       return tianês.tian_sing(type)
     break
     default:
       break;
@@ -472,10 +460,10 @@ tianês.neutral = function() {
   console.log(tian)
   switch (tian) {
     case 'tian_min':
-      tianês.tian_min(neutral)
+      return tianês.tian_min(neutral)
     break
     case 'tian_shu':
-      tianês.tian_shu(neutral)
+      return tianês.tian_shu(neutral)
     break
     default:
       break;
@@ -483,6 +471,7 @@ tianês.neutral = function() {
 }
 
 const ulfeno = {}
+ulfeno.culture = 'ulfeno'
 ulfeno.name = function (type) {
   
   const nm1 = ["Åsmund", "Æinridi", "Æirik", "Ærinmund", "Ærnmund", "Æsbiorn", "Æskil", "Ævar", "Øpir", "Øybiorn", "Øystæin", "Øysten", "Abi", "Adils", "Agmundr", "Agnar", "Aki", "Aleifr", "Alf", "Alfarin", "Alfgeir", "Alfketill", "Ali", "Alrik", "Alvi", "Amundi", "An", "Anakol", "Andvett", "Anlaf", "Anund", "Arfast", "Ari", "Arinbjorn", "Armod", "Arn", "Arnbjorn", "Arnfinn", "Arngeir", "Arngrim", "Arni", "Arnkel", "Arnketill", "Arnlaug", "Arnljot", "Arnor", "Arnstein", "Arnthor", "Arnulfr", "Arnvid", "Aron", "Asbjorn", "Asbrand", "Asfrith", "Asgaut", "Asgeir", "Asgrim", "Askel", "Asketill", "Aslak", "Asmund", "Assur", "Asulf", "Asvald", "Asvard", "Athils", "Atli", "Atsurr", "Auðunar", "Audbjorn", "Audgisil", "Audgisli", "Audolf", "Audun", "Austmathr", "Authgrim", "Authketill", "Authulf", "Authun", "Auti", "Balki", "Balli", "Banki", "Bard", "Bardi", "Baug", "Beigarth", "Beiner", "Beinir", "Berg", "Bergfinn", "Bergthor", "Bergvid", "Bersi", "Bior", "Biorn", "Birning", "Bjalfi", "Bjalki", "Bjarki", "Bjarni", "Bjartmar", "Bjor", "Bjorgolf", "Bjorgulf", "Bjorn", "Bjornulf", "Blæng", "Blann", "Bodalf", "Bodvar", "Boe", "Bolli", "Bolverk", "Borgar", "Bork", "Borstig", "Bothvar", "Botulf", "Bræsi", "Bragi", "Bram", "Brand", "Bretakollr", "Broddi", "Brodir", "Brondulf", "Bruni", "Brusi", "Bui", "Byrnjolf", "Cnut", "Dag", "Dagfinn", "Dan", "Diarf", "Dunfjall", "Dyri", "Edgar", "Egil", "Eid", "Eilif", "Einar", "Eindridi", "Eirik", "Eldgrim", "Elgfrothi", "Engli", "Erlend", "Erling", "Ernmund", "Erp", "Eskil", "Eydis", "Eyjolf", "Eystein", "Eyvald", "Eyvind", "Fargrim", "Farmann", "Farthegn", "Fastulf", "Finn", "Finnleik", "Finnvid", "Firthgest", "Floki", "Flosi", "Folkbiorn", "Folkmar", "Forni", "Frømund", "Freystein", "Fridgeir", "Fridmund", "Frodi", "Frostulf", "Frothi", "Gæda", "Gæira", "Gæirmund", "Gærhialm", "Gærrar", "Gætir", "Galti", "Gamal", "Gamli", "Gardar", "Gardi", "Gauk", "Gaut", "Gauti", "Gavtvid", "Geir", "Geirfinn", "Geirleif", "Geirmund", "Geirolf", "Geirstein", "Geirthjof", "Geitir", "Geitirgest", "Gellir", "Geri", "Gest", "Giermund", "Gilli", "Gils", "Gisli", "Gizor", "Gizur", "Glam", "Glum", "Gnupa", "Gnupi", "Gorm", "Grani", "Gretter", "Grettir", "Grim", "Grimar", "Grimkel", "Grimolf", "Grimwald", "Grind", "Griotgard", "Gris", "Grith", "Grjotgard", "Guda", "Gudbrand", "Gudlaug", "Gudleif", "Gudmund", "Gudrik", "Gudrod", "Gudvær", "Gufi", "Gulli", "Gunbjorn", "Gunnald", "Gunnar", "Gunnbjorn", "Gunnhautr", "Gunni", "Gunnkel", "Gunnlæif", "Gunnlaug", "Gunnleif", "Gunnstein", "Gunnulf", "Gunnvid", "Guthhere", "Guthorm", "Guthroth", "Guthrum", "Gylfi", "Gyrd", "Häming", "Hæfnir", "Hælæif", "Hælgi", "Hæming", "Hæng", "Hadd", "Haf", "Hafgrim", "Haflidi", "Hafr", "Hagi", "Haki", "Haklang", "Hakon", "Halfdan", "Halftan", "Hall", "Hallad", "Hallbjorn", "Halldor", "Hallfred", "Hallfrid", "Hallgrim", "Halli", "Hallkel", "Hallmund", "Hallstein", "Hallvard", "Halvdan", "Ham", "Hamund", "Hanef", "Harald", "Hardbein", "Hardrefil", "Harek", "Hastein", "Hauk", "Havard", "Hedin", "Hegg", "Helgi", "Heming", "Heriolf", "Herjolf", "Herlaug", "Herlu", "Hermund", "Herstein", "Hialti", "Hildiglum", "Hildir", "Hiorvard", "Hjalkar", "Hjalti", "Hjarrandi", "Hjor", "Hjorleif", "Hjort", "Hjorvarth", "Hlenni", "Hlodvir", "Hogni", "Holmfast", "Holmgavt", "Holmgeir", "Holmstæin", "Holmstein", "Hord", "Hoskuld", "Hosvir", "Hott", "Hrærek", "Hrafn", "Hrafnkel", "Hrafnvartr", "Hragnelf", "Hranfast", "Hrani", "Hrapp", "Hreida", "Hreidar", "Hrein", "Hreitharr", "Hrifla", "Hring", "Hroald", "Hroar", "Hrodgæir", "Hrodgeir", "Hrodi", "Hrok", "Hrolf", "Hrollaug", "Hromund", "Hrossbjorn", "Hrosskel", "Hrosskell", "Hrossketil", "Hrut", "Hunbogi", "Hundi", "Hundolfr", "Hvitserk", "Iarl", "Iarlabanki", "Iarund", "Illugi", "Ingemar", "Ingi", "Ingibjorg", "Ingifast", "Ingimar", "Ingimund", "Ingjald", "Ingolf", "Ingulbjörn", "Ingvar", "Iogæir", "Ioketill", "Iorthr", "Iorund", "Irenmund", "Iri", "Iric", "Isgaut", "Isi", "Isleif", "Isulf", "Iuli", "Ivar", "Jarlabanki", "Jarlebanke", "Jarnskeggi", "Jobjorn", "Johan", "Jokul", "Jomar", "Jon", "Jorund", "Käre", "Kætiløy", "Kætil", "Kætilfast", "Kætilmund", "Kabbi", "Kadal", "Kalf", "Kar", "Kari", "Karl", "Karli", "Karsi", "Kaupmann", "Ketil", "Ketilbiorn", "Ketilbjorn", "Ketill", "Kisping", "Kjallak", "Kjartan", "Kjotvi", "Klakkr", "Knútr", "Knut", "Kodran", "Koigrim", "Kol", "Kolbein", "Kolfinn", "Koll", "Kollskegg", "Kollsvein", "Kolskegg", "Konal", "Kori", "Kormak", "Kotkel", "Kotkell", "Kraki", "Kveldulf", "Lambi", "Leidolf", "Leif", "Leiknir", "Lifolf", "Lifstæn", "Lini", "Liut", "Ljot", "Lodin", "Lodmund", "Lopt", "Ludin", "Lyting", "Magnus", "Mak", "Manni", "Mar", "Meldun", "Modolf", "Moldof", "Mord", "Mursi", "Nærfi", "Naddod", "Nafni", "Nasi", "Nefstein", "Nikolas", "Njal", "Northri", "Odd", "Oddløg", "Oddleif", "Odinkar", "Ofeig", "Ofieg", "Ogmund", "Olæ", "Olæif", "Olaf", "Oleif", "Olvir", "Onäm", "Ondott", "Onem", "Ongul", "Onund", "Orøkia", "Orest", "Orgumleidi", "Orlyg", "Orm", "Orn", "Ornolf", "Ornulf", "Orri", "Orrin", "Ospak", "Osvald", "Osvif", "Oswald", "Otkel", "Otrygg", "Ottar", "Oystæin", "Ozur", "Paul", "Ragi", "Ragnar", "Ragnfast", "Ragnvald", "Raudebjorn", "Ref", "Regin", "Reinn", "Rodmar", "Rognvald", "Runolf", "Sæbbi", "Sæmund", "Sævil", "Saksi", "Sam", "Saxi", "Selkollr", "Serk", "Sibbi", "Sigbjorn", "Sigbrand", "Sigebeorht", "Sigeferth", "Sigegar", "Sigeheah", "Sigehelm", "Sigehere", "Sigelac", "Sigemær", "Sigemund", "Sigenoth", "Sigeræd", "Sigeric", "Sigestæl", "Sigeweard", "Sigewine", "Sigewulf", "Sigfast", "Sigfus", "Sigguatr", "Sighadd", "Sighvat", "Sigmund", "Sigtrygg", "Sigurd", "Sigvaldi", "Sigvat", "Sigvid", "Sinfiotli", "Singasven", "Skœdir", "Skallagrim", "Skamkel", "Skap", "Skapti", "Skard", "Skardi", "Skarf", "Skegg", "Skeggi", "Skialg", "Skidi", "Skjaldulf", "Skjold", "Skopti", "Skorri", "Skuf", "Skuld", "Skuli", "Skurfa", "Skuti", "Slode", "Slodi", "Slothi", "Snæbjorn", "Snækol", "Snorri", "Sod", "Sokkolf", "Solmund", "Solvi", "Sorli", "Spiallbudi", "Spiut", "Spjut", "Stækar", "Starkad", "Starolf", "Starri", "Stein", "Steinar", "Steinbitr", "Steinbjorn", "Steingrim", "Steinkel", "Steinketill", "Steinmod", "Steinolf", "Steinthor", "Steinunn", "Stigandi", "Storolf", "Stuf", "Sturla", "Styr", "Styrbiorn", "Styrkar", "Styrkollr", "Styrmir", "Suit", "Sumarlid", "Sumarlidi", "Surt", "Svæin", "Svafar", "Svalfi", "Svan", "Svart", "Svartbrand", "Svartgeirr", "Svartkollr", "Svartlingr", "Svein", "Sveinbjorn", "Sven", "Sveni", "Sverting", "Svinulf", "Svipday", "Swein", "Teit", "Thangbrand", "Thialfi", "Thidrandi", "Thidrik", "Thiodolf", "Thjodofl", "Thjodoft", "Thjostolf", "Thokodolf", "Thometill", "Thorald", "Thoraldr", "Thorarin", "Thorberg", "Thorbjorn", "Thorbrand", "Thord", "Thorfast", "Thorfinn", "Thorfrethr", "Thorgaut", "Thorgeir", "Thorgest", "Thorgils", "Thorgrim", "Thorhall", "Thorir", "Thorkel", "Thorkell", "Thorketil", "Thorlak", "Thorleif", "Thorleik", "Thormar", "Thormod", "Thormothr", "Thoroard", "Thorod", "Thorodd", "Thorolf", "Thororm", "Thorred", "Thorstar", "Thorstein", "Thorvald", "Thorvard", "Thorvid", "Thrain", "Thrand", "Throst", "Tjorvi", "Tofi", "Toki", "Tola", "Tore", "Torfi", "Torrad", "Torsten", "Tosti", "Trandil", "Trud", "Trygg", "Tryggvi", "Tufi", "Tumi", "Tyrfing", "Tyrkir", "Ubbein", "Ufi", "Uglubathr", "Ulf", "Ulfar", "Ulfbjorn", "Ulfgrim", "Ulfketil", "Ulfljot", "Ulfrik", "Ulvkil", "Uni", "Unn", "Unnulf", "Värmod", "Valbrand", "Valgard", "Vali", "Valthjof", "Vandil", "Vandrad", "Var", "Varin", "Vathlauss", "Vebjorn", "Vebrand", "Vegeir", "Vekel", "Veleif", "Vermund", "Vertlithi", "Vestar", "Vestein", "Vestgeir", "Veturlidi", "Vidkunn", "Vifil", "Vigbjord", "Vigfus", "Vigi", "Vigot", "Vikar", "Visäte", "Vog", "Vott", "Waltheof", "Wary", "Wealglist", "Wengo", "Yngvar", "Ysoppa"];
@@ -500,12 +489,13 @@ ulfeno.name = function (type) {
     names = nm1[rnd] + " " + nm2[rnd2];
   }
 
-  console.log(names)
+  return names
 }
 ulfeno.male = function () {return this.name(male)}
 ulfeno.female = function () {return this.name(female)}
 
 const varisiano = {}
+varisiano.culture = 'varisiano'
 varisiano.name = function (type) {
   const nm1 = ["Abel", "Adam", "Adi", "Adrian", "Alex", "Alexandru", "Alin", "Anatolie", "Andrei", "Anghel", "Anton", "Antonio", "Apostol", "Arsenie", "Artur", "Augustin", "Aurel", "Beniamin", "Beryx", "Bodgan", "Bogdan", "Boian", "Calin", "Carol", "Catalin", "Catarino", "Cezar", "Ciodaru", "Ciprian", "Claudiu", "Codrin", "Constantin", "Cornel", "Corneliu", "Cosmin", "Costache", "Costea", "Costel", "Costi", "Costica", "Costin", "Cristian", "Cristinel", "Cristofor", "Dan", "Daniel", "Danus", "Danut", "Darius", "David", "Denis", "Dimitrie", "Dimitry", "Dinu", "Dionisie", "Dominik", "Dorin", "Doru", "Dracul", "Dragomir", "Dragos", "Dragoslav", "Drahoslav", "Dumitru", "Eduard", "Eftemie", "Emanuel", "Emil", "Emilian", "Eugen", "Felix", "Ferka", "Filip", "Flaviu", "Flavius", "Florentin", "Florin", "Gabi", "Gabriel", "Gavril", "George", "Geza", "Gheorghe", "Glad", "Gogu", "Grigore", "Haralamb", "Horasiu", "Horatiu", "Horea", "Horia", "Iancu", "Ilie", "Ioan", "Ion", "Ionache", "Ionatan", "Ionel", "Ionus", "Ionut", "Iorghu", "Iosif", "Iulian", "Iulien", "Iulio", "Iuliu", "Ivan", "Ivantie", "Jan", "Jean", "Laurensiu", "Laurentiu", "Liviu", "Luca", "Lucian", "Manuel", "Marcel", "Marin", "Mario", "Marius", "Marku", "Martin", "Matei", "Mazonn", "Mihai", "Mihail", "Mihaita", "Miron", "Nandru", "Neculai", "Nelu", "Nic", "Nicolae", "Nicolas", "Nicu", "Niculaie", "Nicusor", "Octavian", "Ovidiu", "Paul", "Pereteanu", "Petar", "Petre", "Petru", "Radu", "Rares", "Rasvan", "Raul", "Razvan", "Remus", "Rica", "Robert", "Sanda", "Sandu", "Sebastian", "Serafim", "Serban", "Serghei", "Sergiu", "Shaithis", "Silviu", "Simion", "Simon", "Simu", "Skender", "Soare", "Sorin", "Stan", "Stefan", "Stelian", "Tavian", "Teo", "Teodor", "Teodosie", "Theodor", "Tiberiu", "Timotei", "Toma", "Traian", "Tudor", "Valentin", "Valerian", "Valeriu", "Vali", "Varujan", "Vasile", "Vasilescu", "Veaceslav", "Velkan", "Victor", "Viorel", "Virgil", "Virgiliu", "Vlad", "Vladimir", "Wadim"];
   const nm2 = ["Adela", "Adelina", "Adriana", "Adrianna", "Afina", "Alexandra", "Alexandreina", "Alin", "Alina", "Amalia", "Amelia", "Ana", "Ana-maria", "Anamaria", "Anca", "Andreea", "Anemona", "Angela", "Angelica", "Anica", "Antanasia", "Antoaneta", "Atanasia", "Augustina", "Aurelia", "Aurica", "Aurika", "Aurora", "Beatrix", "Bianca", "Bogdana", "Brandusa", "Brigita", "Brindusa", "Camelia", "Cami", "Carla", "Carmen", "Catalena", "Catalina", "Catina", "Cecilia", "Celestina", "Cristina", "Cici", "Clara", "Claudia", "Codruta", "Constansa", "Constanta", "Corina", "Corinna", "Cornelia", "Cosmina", "Costela", "Craita", "Crina", "Cristina", "Daciana", "Dana", "Daniela", "Daria", "Delia", "Denisa", "Diana", "Diona", "Doina", "Dominique", "Dorina", "Dorota", "Draguta", "Dumitra", "Dumitrita", "Ecaterina", "Elena", "Elisabeta", "Eliza", "Ema", "Emilia", "Emiliana", "Erika", "Estera", "Eugenia", "Eveline", "Felicia", "Flavia", "Floarea", "Florenta", "Flori", "Florica", "Florina", "Gabi", "Gabriela", "Gabriella", "Georgeta", "Georgiana", "Georgina", "Gheorghita", "Gina", "Elena", "Helga", "Ihrin", "Ileana", "Ilena", "Ilinca", "Imanuela", "Ioana", "Ioanela", "Iolanda", "Iona", "Ionela", "Irina", "Isabela", "Isabella", "Iulia", "Iuliana", "Ivona", "Izabela", "Jeni", "Jenica", "Ioana", "Juana", "Kathryn", "Lacramioara", "Laura", "Laurentia", "Lavinia", "Lenusa", "Lenuta", "Leunta", "Lia", "Ligia", "Lilian", "Liliana", "Lina", "Livia", "Lizuca", "Loredana", "Lucia", "Luiza", "Luminisa", "Luminita", "Madalina", "Magda", "Magdalena", "Manuela", "Mara", "Marcela", "Margareta", "Maria", "Mariana", "Marica", "Marilena", "Marina", "Marinela", "Marioara", "Mariutza", "Marta", "Melania", "Melita", "Mihaela", "Michaela", "Mihaela", "Mirela", "Miruna", "Monica", "Monique", "Nadezhda", "Narcisa", "Natalia", "Nedelcu", "Neulai", "Nicoleta", "Nina", "Oana", "Octavia", "Olga", "Olimpia", "Olivia", "Olympia", "Paula", "Petronela", "Rahela", "Raluca", "Ramona", "Regina", "Relia", "Reveka", "Rodica", "Rodika", "Romanitza", "Roxana", "Rozalia", "Ruxandra", "Sabina", "Sanda", "Sandra", "Silvia", "Simona", "Sofia", "Sonia", "Sorana", "Sorina", "Sorinah", "Sorine", "Sorinna", "Stefana", "Stefania", "Stela", "Tabitha", "Tara", "Tatiana", "Teadora", "Teodora", "Teofila", "Tereza", "Trandafira", "Uta", "Valentina", "Valeria", "Valerica", "Vanda", "Varduhi", "Vasilica", "Veronica", "Victoria", "Violeta", "Viorela", "Viorica", "Virginia", "Viviana", "Voctorita", "Voileta", "Yessenia", "Ylenia", "Zana", "Zina"];
@@ -521,13 +511,14 @@ varisiano.name = function (type) {
     rnd = Math.floor(Math.random() * nm1.length);
     names = nm1[rnd] + " " + nm3[rnd2];
   } 
-  console.log(names)
+  return names
 
 }
 varisiano.male = function () {return this.name(male)}
 varisiano.female = function () {return this.name(female)}
 
 const vudrani = {}
+vudrani.culture = 'vudrani'
 vudrani.name = function (type) {
 
   const nm1 = ["Aakash", "Abhi", "Abhinav", "Acarya", "Aditya", "Ajatasatru", "Akshey", "Aman", "Amar", "Amara", "Amish", "Amitabh", "Amitodana", "Amrit", "Anand", "Ananda", "Anguri", "Anil", "Anuraag", "Arjuna", "Arpit", "Arun", "Aryabhata", "Aryabhatta", "Asha", "Ashtavakra", "Ashutosh", "Asvalayana", "Ayaan", "Ayush", "Baibhav", "Bana", "Benegal", "Bhavabhuti", "Bhima", "Bhrigu", "Chakravarti", "Chand", "Chanda", "Chander", "Chandra", "Chandrama", "Chatur", "Chettur", "Chhotu", "Chunder", "Cyavana", "Daas", "Dadabhvai", "Daksh", "Daksha", "Dasra", "Daya", "Dayananda", "Dhani", "Dharya", "Dheeraj", "Dhirtarashtra", "Dhule", "Dhuleep", "Din", "Dyal", "Gagan", "Ganesh", "Gopal", "Govind", "Govinda", "Gunadhya", "Hala", "Har", "Harsh", "Hira", "Ishwar", "Jagadis", "Jamadagni", "Jaswant", "Jatayu", "Jawahar", "Jayadeva", "Jeet", "Jhanda", "Jwala", "Kahoda", "Kanada", "Kapila", "Karam", "Katyayana", "Keshav", "Krishan", "Krishna", "Kusika", "Lakshmana", "Madhava", "Madhavacharta", "Maha", "Mahadaji", "Mahava", "Manas", "Megaduta", "Megh", "Mishri", "Mohun", "Motilal", "Nakshatra", "Nakula", "Narayana", "Nasatya", "Navin", "Navneet", "Om", "Pandu", "Panini", "Patanjali", "Peeyush", "Prakash", "Pramod", "Pranav", "Prashant", "Pravarasena", "Prem", "Purshottama", "Raghu", "Ragoba", "Ragunath", "Rahul", "Rajendra", "Ramaeshwara", "Ranjan", "Ranjit", "Ravi", "Rhitanshu", "Rishu", "Roodra", "Ruldu", "Rura", "Sackhcham", "Sahadeva", "Santosh", "Saurabh", "Savyaschin", "Sayana", "Shackcham", "Shankaracharya", "Shanti", "Sharad", "Sharya", "Shudraka", "Sooraj", "Srijan", "Sumit", "Sunder", "Surendranath", "Vaibhav", "Vakpati", "Varuni", "Vasishtha", "Veer", "Venkata", "Vijya", "Vikas", "Vikramaditya", "Vinay", "Vineet", "Vinod", "Vishnu", "Viswamitra", "Viswarupa", "Vrikodara", "Waazir", "Yad", "Yogarasa", "Yudhishthira", "Zalim"];
@@ -543,7 +534,38 @@ vudrani.name = function (type) {
       names = nm1[rnd] + " " + nm3[rnd2];
   }
 
-  console.log(names)
+  return names
 }
 vudrani.male = function () {return this.name(male)}
 vudrani.female = function () {return this.name(female)}
+
+const humano = {}
+humano.culture = 'humano'
+humano.name = function (type) {
+  const cultures = [garundi, keleshita, kellid, mwangi, nidalês, shoanti, taldano, tianês, ulfeno, varisiano, vudrani]
+  // console.log(culture)
+  if (type == neutral) {
+    stop = false
+    let culture_neutral
+    while (stop == false) {
+      culture_neutral = cultures[random_number(0, cultures.length)]
+      try {
+        return culture_neutral.neutral()
+        stop = true
+      } catch(e) {
+      }
+    }
+  }
+  culture = cultures[random_number(0, cultures.length)]
+  if (type == female) {
+    console.log(culture.culture)
+    return culture.female()
+  } else {
+    console.log(culture.culture)
+    return culture.male()
+  }
+
+}
+humano.male = function () {return this.name(male)}
+humano.female = function () {return this.name(female)}
+humano.neutral = function () {return this.name(neutral)}
