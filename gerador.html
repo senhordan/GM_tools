@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <link rel="stylesheet" href="">
+  <style type="text/css">
+    #NPC_container{
+      /*text-align: right;*/
+    }
+  </style>
+</head>
+<body>
+  <input type="button" value="🎲" id="regenerate">
+  <input type="checkbox" value="🎲" id="toggle_all">
+  <div id="NPC_container">
+    <div id="NPC_background">
+      <h2>Biografia</h2>
+      <div class="local_de_nascimento">
+        <input type="checkbox" class="local_de_nascimento">
+        <input type="button" value="🎲">
+        <label>Nasceu:</label>
+        <span></span>
+      </div>
+      <div class="pais">
+        <input type="checkbox" class="pais">
+        <input type="button" value="🎲">
+        <label>Pais:</label>
+        <span></span>
+      </div>
+      <div class="lar">
+        <input type="checkbox" class="lar">
+        <input type="button" value="🎲">
+        <label>Lar e Estilo de Vida:</label>
+        <span></span>
+      </div>
+      <div class="biografia">
+        <input type="checkbox" class="biografia">
+        <input type="button" value="🎲">
+        <label>Biografia:</label>
+        <span></span>
+      </div>
+    </div>
+    <div id="NPC_appearance">
+      <h2>Aparência</h2>
+      <div class="corpo">
+        <input type="checkbox" class="corpo">
+        <input type="button" value="🎲">
+        <label>Corpo:</label>
+        <span></span>
+      </div>
+      <div class="altura">
+        <input type="checkbox" class="altura">
+        <input type="button" value="🎲">
+        <label>Altura:</label>
+        <span></span>
+      </div>
+      <div class="cabelo">
+        <input type="checkbox" class="cabelo">
+        <input type="button" value="🎲">
+        <label>Cabelo:</label>
+        <span></span>
+      </div>
+      <div class="" data-empty="true">
+        <input type="checkbox" class="">
+        <input type="button" value="🎲">
+        <label></label>
+        <span></span>
+      </div>
+      <div class="" data-empty="true">
+        <input type="checkbox" class="">
+        <input type="button" value="🎲">
+        <label></label>
+        <span></span>
+      </div>
+    </div>
+    <div id="NPC_behavior">
+      <h2>Comportamento</h2>
+      <div class="humor">
+        <input type="checkbox" class="humor">
+        <input type="button" value="🎲">
+        <label>Humor atual:</label>
+        <span></span>
+      </div>
+      <div class="" data-empty="true">
+        <input type="checkbox" class="">
+        <input type="button" value="🎲">
+        <label></label>
+        <span></span>
+      </div>
+    </div>
+  </div>
+  <script src="./geração/funções.js"></script>
+  <script src="./geração/anão.js"></script>
+  <script src="./geração/elfo.js"></script>
+  <script src="./geração/gnome.js"></script>
+  <script src="./geração/goblin.js"></script>
+  <script src="./geração/halfling.js"></script>
+  <script src="./geração/humano.js"></script>
+  <script src="./geração/meio_elfo.js"></script>
+  <script src="./geração/meio_orc.js"></script>
+  <script src="./geração/traços.js"></script>
+  <script src="./gerador.js"></script>
+</body>
+</html>
