@@ -4,6 +4,10 @@ function random_number(min, max) {
   return Math.floor(Math.random() * (max - min) + min);
 }
 
+const random = (array)=>{
+  return array[random_number(0, array.length)]
+};
+
 const male = 'male'
 const female = 'female'
 const neutral = 'neutral'

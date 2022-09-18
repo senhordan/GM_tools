@@ -1,5 +1,5 @@
-const gnome = {}
-gnome.name = function(type) {
+const gnomo = {}
+gnomo.name = function(type) {
   const nm1 = ["b", "c", "cl", "d", "fr", "g", "gn", "h", "j", "kn", "kl", "l", "m", "n", "p", "r", "sc", "sl", "sn", "sm", "t", "w", "z"];
   const nm2 = ["a", "e", "i", "o", "u", "a", "e", "i", "a", "e", "i", "o", "u", "a", "e", "i", "a", "e", "i", "o", "u", "a", "e", "i", "a", "e", "i", "o", "u", "a", "e", "i", "a", "e", "i", "o", "u", "a", "e", "i", "y", "y", "y", "oo", "ee", "aa", "ie", "ai"];
   const nm3 = ["bbn", "bk", "bn", "bbr", "db", "dd", "ddw", "dn", "ddn", "gn", "gb", "k", "km", "kn", "kp", "kw", "lk", "lb", "llb", "lv", "mb", "mj", "mm", "mp", "mt", "mw", "mz", "md", "nb", "nj", "nk", "nkk", "nsb", "nsm", "nsn", "nz", "nzb", "ngn", "pn", "pp", "pr", "r", "rk", "rb", "rw", "v"];
@@ -61,6 +61,6 @@ gnome.name = function(type) {
   return names
 
 }
-gnome.male = function() {return this.name(male)}
-gnome.female = function() {return this.name(female)}
-gnome.neutral = function() {return this.name(neutral)}
+gnomo.male = function() {return this.name(male)}
+gnomo.female = function() {return this.name(female)}
+gnomo.neutral = function() {return this.name(neutral)}

@@ -7,15 +7,80 @@
   <title></title>
   <link rel="stylesheet" href="">
   <style type="text/css">
+    #humanos{
+    }
     #NPC_container{
       /*text-align: right;*/
     }
   </style>
 </head>
 <body>
-  <input type="button" value="🎲" id="regenerate">
   <input type="checkbox" value="🎲" id="toggle_all">
+  <input type="button" value="🎲" id="regenerate">
   <div id="NPC_container">
+    <div id="NPC">
+      <h2>NPC</h2>
+      <div class="genero">
+        <input type="checkbox" class="genero">
+        <input type="button" value="🎲">      
+        <label>Gênero:</label>
+        <select class="genero">
+          <option value="female">Feminino</option>
+          <option value="male">Masculino</option>
+          <option value="neutral">Neutro</option>
+        </select>
+      </div>
+      <div class="ancestralidade">
+        <input type="checkbox" class="ancestralidade">
+        <input type="button" value="🎲">      
+        <label>Ancestralidade:</label>
+        <select class="ancestralidade">
+          <option value="any">Aleatório</option>
+          <option value="anão" data-neutral="false">Anão</option>
+          <option value="elfo">Elfo</option>
+          <option value="gnomo">Gnomo</option>
+          <option value="goblin" data-neutral="false">Goblin</option>
+          <option value="halfling" data-neutral="false">Halfling</option>
+          <option value="meio_elfo" data-neutral="false">Meio elfo</option>
+          <option value="meio_orc">Meio orc</option>
+          <optgroup label="Humano">
+            <option value="humano" data-neutral="false">Etnia Aleatória</option>
+            <option value="garundi" data-neutral="false">Garundi</option>
+            <option value="keleshita" data-neutral="false">Keleshita</option>
+            <option value="kellid" data-neutral="false">Kellid</option>
+            <option value="nidalês" data-neutral="false">Nidalês</option>
+            <option value="shoanti" data-neutral="false">Shoanti</option>
+            <option value="taldano" data-neutral="false">Taldano</option>
+            <option value="ulfeno" data-neutral="false">Ulfeno</option>
+            <option value="varisiano" data-neutral="false">Varisiano</option>
+            <option value="vudrani" data-neutral="false">Vudrani</option>
+            <optgroup label="Mwangi" data-neutral="false">
+              <option value="mwangi">Cultura Aleatória</option>
+              <option value="bekyar">Bekyar</option>
+              <option value="bonuwat_mauxi">Bonuwat ou Mauxi</option>
+              <option value="zenj">Zenj</option>
+            </optgroup>
+            <optgroup label="Tianês">
+              <option value="tianês">Cultura Aleatória</option>
+              <option value="tian_dan" data-neutral="false">Tian Dan</option>
+              <option value="tian_dtangs" data-neutral="false">Tian Dtangs</option>
+              <option value="tian_hwan" data-neutral="false">Tian Hwan</option>
+              <option value="tian_la" data-neutral="false">Tian La</option>
+              <option value="tian_min">Tian Min</option>
+              <option value="tian_shu">Tian Shu</option>
+              <option value="tian_sing" data-neutral="false">Tian Sing</option>
+            </optgroup>
+          </optgroup>
+        </select>
+      </div>
+      <div class="nome">
+        <input type="checkbox" class="nome">
+        <input type="button" value="🎲">      
+        <label>Nome:</label>
+        <span></span>
+        <!-- <select id="nome"></select> -->
+      </div>
+    </div>
     <div id="NPC_background">
       <h2>Biografia</h2>
       <div class="local_de_nascimento">
@@ -95,7 +160,7 @@
   <script src="./geração/funções.js"></script>
   <script src="./geração/anão.js"></script>
   <script src="./geração/elfo.js"></script>
-  <script src="./geração/gnome.js"></script>
+  <script src="./geração/gnomo.js"></script>
   <script src="./geração/goblin.js"></script>
   <script src="./geração/halfling.js"></script>
   <script src="./geração/humano.js"></script>

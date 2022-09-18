@@ -177,7 +177,7 @@ memoria.generate = ()=>{
 [olhos, orelhas, boca, queixo, cabelo, outros_traços_faciais, altura, corpo, mãos, cicatrizes, tatuagem, roupas, quando_calmo, quando_estressado, humor, fé, defeito, biografia]
 	.forEach(variavel=>{
 		variavel.generate = ()=>{
-			return variavel[random_number(0, variavel.length)]
+			return random(variavel)
 		}
 })
 
@@ -185,11 +185,11 @@ joia.generate = ()=>{
 	const joias = joia[0]
 	const materiais = joia[1]
 	const gemas = joia[2]
-	const joia_escolhida = joias[random_number(0, joias.length) ]
-	let material = materiais[random_number(0, materiais.length) ]
+	const joia_escolhida = random(joias)
+	let material = random(materiais)
 	let item = ''
 	if (material == 'gemas') {
-		material = gemas[random_number(0, gemas.length) ]
+		material = random(gemas)
 	}
 	if (joia_escolhida.indexOf('%s') != -1) {
 		item = joia_escolhida.replace('%s', `de ${material}`)

@@ -139,3 +139,4 @@ meio_orc.name = function (type) {
 }
 meio_orc.male = function() {return this.name(male)}
 meio_orc.female = function() {return this.name(female)}
+meio_orc.neutral = function() {return this.name(neutral)}
