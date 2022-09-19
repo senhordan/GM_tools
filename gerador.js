@@ -45,62 +45,73 @@ const generate = (variavel)=>{
     }
 }
 
-const ancestrys = {
-  "anão": anão,
-  "elfo": elfo,
-  "gnomo": gnomo,
-  "goblin": goblin,
-  "halfling": halfling,
-  "humano": humano,
-  "meio_elfo": meio_elfo,
-  "meio_orc": meio_orc
-}
 
-const generos = ['male', 'female']
 
-const generate_NPC = ()=>{
+// const ancestrys = {
+//   "anão": anão,
+//   "elfo": elfo,
+//   "gnomo": gnomo,
+//   "goblin": goblin,
+//   "halfling": halfling,
+//   "humano": humano,
+//   "meio_elfo": meio_elfo,
+//   "meio_orc": meio_orc
+// }
 
-  const select_genero = query('select.genero')
-  const select_ancestralidade = query('select.ancestralidade')
-  const span = query('div.nome span')
+// const neutral_ancestrys = {
+//   "elfo": elfo,
+//   "gnomo": gnomo,
+//   "humano": humano,
+//   "meio_orc": meio_orc
+// }
 
-  let genero = random(generos)
-  let checkbox_genero = query('input[type="checkbox"].genero')
-  if (checkbox_genero.checked) {
-    genero = select_genero.value
-  }
+// const generos = ['male', 'female']
 
-  let ancestralidade = random(Object.entries(ancestrys))[0]
-  let checkbox_ancestralidade = query('input[type="checkbox"].ancestralidade')
-  if (checkbox_ancestralidade.checked) {
-    ancestralidade = select_ancestralidade.value
-  }
+// const generate_NPC = ()=>{
 
-  let nome 
-  let checkbox_nome = query('input[type="checkbox"].nome')
-  if (!checkbox_nome.checked) {
-    select_genero.value = genero
+//   const select_genero = query('select.genero')
+//   const select_ancestralidade = query('select.ancestralidade')
+//   const span = query('div.nome span')
 
-    // ancestralidade = ancestralidade
-    // span.innerText = ancestrys[ancestralidade][genero]()
-    // 
+//   let ancestralidade = random(Object.entries(ancestrys))[0]
 
-    if (ancestralidade == 'humano') {
-      nome = ancestrys[ancestralidade][genero]()
+//   let genero = random(generos)
+//   let checkbox_genero = query('input[type="checkbox"].genero')
+//   if (checkbox_genero.checked) {
+//     genero = select_genero.value
+//     ancestralidade = random(Object.entries(neutral_ancestrys))[0]
+//   }
 
-      ancestralidade = nome[0]
-      nome = nome[1]
+//   let checkbox_ancestralidade = query('input[type="checkbox"].ancestralidade')
+//   if (checkbox_ancestralidade.checked) {
+//     ancestralidade = select_ancestralidade.value
+//   }
 
-    } else {
-      ancestralidade = ancestralidade
-      nome = ancestrys[ancestralidade][genero]()
-    }
+//   let nome 
+//   let checkbox_nome = query('input[type="checkbox"].nome')
+//   if (!checkbox_nome.checked) {
+//     select_genero.value = genero
 
-    select_ancestralidade.value = ancestralidade
-    span.innerText = nome
-  }
+//     // ancestralidade = ancestralidade
+//     // span.innerText = ancestrys[ancestralidade][genero]()
+//     // 
 
-}
+//     if (ancestralidade == 'humano') {
+//       console.log(ancestralidade)
+//       nome = ancestrys[ancestralidade][genero]()
+
+//       ancestralidade = nome[0]
+//       nome = nome[1]
+
+//     } else {
+//       nome = ancestrys[ancestralidade][genero]()
+//     }
+
+//     select_ancestralidade.value = ancestralidade
+//     span.innerText = nome
+//   }
+
+// }
 
 const generate_all = ()=>{
 
@@ -111,7 +122,10 @@ const generate_all = ()=>{
     })
   };
 
-  generate_NPC()
+  // query('select.ancestralidade').value
+  
+
+  // generate_NPC()
 
   const vars_appearance2 = [tatuagem, roupas, joia]
   create_generate(vars_appearance2[random_number(0, vars_appearance2.length)], 'NPC_appearance');
