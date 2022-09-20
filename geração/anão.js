@@ -24,7 +24,7 @@ anão.name = function(type) {
       names = nm1[rnd] + nm2[rnd2] + nm3[rnd3] + " " + nm7[rnd4] + nm8[rnd5]
     }
 
-  return names
+  return ['anão', names]
 }
 anão.male = function() {return this.name(male)}
 anão.female = function() {return this.name(female)}

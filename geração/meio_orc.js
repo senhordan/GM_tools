@@ -33,7 +33,7 @@ meio_orc.name = function (type) {
     }
   }
 
-  return names
+  return ['meio_orc', names]
 
   function nameMas() {
     nTp = Math.random() * 8 | 0;

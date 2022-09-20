@@ -58,7 +58,7 @@ gnomo.name = function(type) {
   }
 
   rnd2 = Math.random() * nm3.length | 0;
-  return names
+  return ['gnomo', names]
 
 }
 gnomo.male = function() {return this.name(male)}

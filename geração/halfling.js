@@ -28,7 +28,7 @@ halfling.name = function(type) {
   nm13.splice(rnd2, 1)
 
 
-  return names
+  return ['halfling', names]
 
 
   function nameFem() {

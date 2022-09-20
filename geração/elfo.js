@@ -21,7 +21,7 @@ elfo.name = function(type) {
     names = nm1[rnd] + " " + nameLast;
   }
 
-  return names
+  return ['elfo', names]
 }
 elfo.male = function() {return this.name(male)}
 elfo.female = function() {return this.name(female)}

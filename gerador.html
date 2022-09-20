@@ -17,13 +17,12 @@
 <body>
   <input type="checkbox" value="🎲" id="toggle_all">
   <input type="button" value="🎲" id="regenerate">
-  <div id="NPC_container">
+  <div id="NPC_container" style="margin-bottom: 1em;">
     <div id="NPC">
       <h2>NPC</h2>
       <div class="genero">
         <input type="checkbox" class="genero">
-        <input type="button" value="🎲">      
-        <label>Gênero:</label>
+        <label style="padding-left: 2.3em;">Gênero:</label>
         <select class="genero">
           <option value="female">Feminino</option>
           <option value="male">Masculino</option>
@@ -32,10 +31,8 @@
       </div>
       <div class="ancestralidade">
         <input type="checkbox" class="ancestralidade">
-        <input type="button" value="🎲">      
-        <label>Ancestralidade:</label>
+        <label style="padding-left: 2.3em;">Ancestralidade:</label>
         <select class="ancestralidade">
-          <option value="any">Aleatório</option>
           <option value="anão" data-neutral="false">Anão</option>
           <option value="elfo">Elfo</option>
           <option value="gnomo">Gnomo</option>
@@ -55,10 +52,10 @@
             <option value="varisiano" data-neutral="false">Varisiano</option>
             <option value="vudrani" data-neutral="false">Vudrani</option>
             <optgroup label="Mwangi" data-neutral="false">
-              <option value="mwangi" class="humano">Cultura Aleatória</option>
-              <option value="bekyar" class="humano">Bekyar</option>
-              <option value="bonuwat_mauxi" class="humano">Bonuwat ou Mauxi</option>
-              <option value="zenj" class="humano">Zenj</option>
+              <option value="mwangi"data-neutral="false" class="humano">Cultura Aleatória</option>
+              <option value="bekyar"data-neutral="false" class="humano">Bekyar</option>
+              <option value="bonuwat_mauxi"data-neutral="false" class="humano">Bonuwat ou Mauxi</option>
+              <option value="zenj"data-neutral="false" class="humano">Zenj</option>
             </optgroup>
             <optgroup label="Tianês">
               <option value="tianês">Cultura Aleatória</option>
@@ -75,7 +72,7 @@
       </div>
       <div class="nome">
         <input type="checkbox" class="nome">
-        <input type="button" value="🎲">      
+        <input type="button" value="🎲" onclick="generate_npc()">      
         <label>Nome:</label>
         <span></span>
         <!-- <select id="nome"></select> -->
@@ -156,6 +153,12 @@
         <span></span>
       </div>
     </div>
+  </div>
+  <div class="descrição">
+    <h2 class="descrição">Descrição</h2>
+    <label>Nome Alternativo</label>
+    <input type="text">
+    <textarea name="" id="" cols="35" rows="10" style="display: block;"></textarea>
   </div>
   <script src="./geração/funções.js"></script>
   <script src="./geração/anão.js"></script>

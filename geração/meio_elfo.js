@@ -20,7 +20,7 @@ meio_elfo.name = function (type) {
     names = nm1[rnd] + nm2[rnd2] + " " + nameLast;
   }
 
-  return names
+  return ['meio_elfo', names]
 }
 meio_elfo.male = function() {return this.name(male)}
 meio_elfo.female = function() {return this.name(female)}

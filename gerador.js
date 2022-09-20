@@ -45,73 +45,41 @@ const generate = (variavel)=>{
     }
 }
 
+const generate_npc = ()=>{
+
+  select_ancestralidade = query('select.ancestralidade')
+  select_genero = query('select.genero')
+  checkbox_ancestralidade = query('input[type="checkbox"].ancestralidade')
+  checkbox_genero = query('input[type="checkbox"].genero')
+  checkbox_nome = query('input[type="checkbox"].nome')
+  span = query('div.nome span')
+
+  let genero = random(['male', 'female'])
+  if (checkbox_genero.checked) {
+    genero = select_genero.value
+  }
 
 
-// const ancestrys = {
-//   "anão": anão,
-//   "elfo": elfo,
-//   "gnomo": gnomo,
-//   "goblin": goblin,
-//   "halfling": halfling,
-//   "humano": humano,
-//   "meio_elfo": meio_elfo,
-//   "meio_orc": meio_orc
-// }
+  let ancestralidade = random(query('select.ancestralidade option')).value
 
-// const neutral_ancestrys = {
-//   "elfo": elfo,
-//   "gnomo": gnomo,
-//   "humano": humano,
-//   "meio_orc": meio_orc
-// }
+  if (checkbox_ancestralidade.checked) {
+    ancestralidade = select_ancestralidade.value
+  }
 
-// const generos = ['male', 'female']
+  let nome_e_ancestralidade = ancestralidades[ancestralidade][genero]()
 
-// const generate_NPC = ()=>{
+  ancestralidade = nome_e_ancestralidade[0]
+  nome = nome_e_ancestralidade[1]
 
-//   const select_genero = query('select.genero')
-//   const select_ancestralidade = query('select.ancestralidade')
-//   const span = query('div.nome span')
+  if (checkbox_nome.checked) {
+    nome = span.innerHTML
+  }
 
-//   let ancestralidade = random(Object.entries(ancestrys))[0]
-
-//   let genero = random(generos)
-//   let checkbox_genero = query('input[type="checkbox"].genero')
-//   if (checkbox_genero.checked) {
-//     genero = select_genero.value
-//     ancestralidade = random(Object.entries(neutral_ancestrys))[0]
-//   }
-
-//   let checkbox_ancestralidade = query('input[type="checkbox"].ancestralidade')
-//   if (checkbox_ancestralidade.checked) {
-//     ancestralidade = select_ancestralidade.value
-//   }
-
-//   let nome 
-//   let checkbox_nome = query('input[type="checkbox"].nome')
-//   if (!checkbox_nome.checked) {
-//     select_genero.value = genero
-
-//     // ancestralidade = ancestralidade
-//     // span.innerText = ancestrys[ancestralidade][genero]()
-//     // 
-
-//     if (ancestralidade == 'humano') {
-//       console.log(ancestralidade)
-//       nome = ancestrys[ancestralidade][genero]()
-
-//       ancestralidade = nome[0]
-//       nome = nome[1]
-
-//     } else {
-//       nome = ancestrys[ancestralidade][genero]()
-//     }
-
-//     select_ancestralidade.value = ancestralidade
-//     span.innerText = nome
-//   }
-
-// }
+  // generate_NPC()
+  select_genero.value = genero
+  select_ancestralidade.value = ancestralidade
+  span.innerHTML = nome
+}
 
 const generate_all = ()=>{
 
@@ -122,10 +90,7 @@ const generate_all = ()=>{
     })
   };
 
-  // query('select.ancestralidade').value
-  
-
-  // generate_NPC()
+  generate_npc()
 
   const vars_appearance2 = [tatuagem, roupas, joia]
   create_generate(vars_appearance2[random_number(0, vars_appearance2.length)], 'NPC_appearance');
@@ -147,7 +112,7 @@ query('select.genero').onchange = ()=>{
     query('[data-neutral="false"]').forEach(element=>{
       element.style.display = 'none'
      })
-    query('select.ancestralidade').value = 'any'
+    query('select.ancestralidade').value = 'elfo'
     // toggle_ancestry()
   } else {
     query('[data-neutral="false"]').forEach(element=>{
@@ -176,9 +141,52 @@ query('input[type="checkbox"].nome').onclick = ()=>{
   }
 }
 
+query('input[type="checkbox"].ancestralidade').onclick = ()=>{
+  if (query('input[type="checkbox"].nome').checked) {
+    query('input[type="checkbox"].ancestralidade').click()
+  }
+}
+
+query('input[type="checkbox"].genero').onclick = ()=>{
+  if (query('input[type="checkbox"].nome').checked) {
+    query('input[type="checkbox"].genero').click()
+  }
+}
+
 regenerate.onclick = ()=>{
   generate_all()
 }
 
 generate_all()
 
+const salvar_NPC = ()=>{
+
+  let span_option
+  let NPC = ''
+  query('h2:not(.descrição), div[class] label, span, select').forEach(i=>{
+    label = i.innerText
+    tag = i.localName
+    if (tag == 'h2') {
+      label = label.toUpperCase()
+      NPC += `${label}\n`
+    } else {
+      if (tag == 'select') {
+        label = i.querySelector(`option[value="${i.value}"]`).innerText
+      } else {
+        label = `${label}`
+      }
+      if (!span_option) {
+        span_option = label
+      } else {
+        NPC += `  ${span_option} ${label}\n`
+        span_option = ''
+      }
+    }
+  })
+  const descrição = query('.descrição textarea').value
+  const nome_alternativo = query('.descrição input').value
+
+  console.log(nome_alternativo)
+  console.log(descrição)
+  console.log(NPC)
+}

@@ -28,7 +28,7 @@ goblin.name = function(type) {
     // names = nm1[rnd5] + nm2[rnd2] + nm3[rnd3] + nm2[rnd2b] + nm4[rnd7];
   }
 
-  return names
+  return ['goblin', names]
 }
 goblin.male = function() {return this.name(male)}
 goblin.female = function() {return this.name(female)}
