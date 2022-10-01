@@ -1,3 +1,62 @@
+socket = io()
+
+const add_NPC = (NPC)=>{
+
+  let aaa = ''
+  console.log(NPC)
+  NPC.traits.forEach(obj=>{
+    const var_name = Object.keys(obj)[0]
+    const text = Object.values(obj)[0]
+    try {
+      const label = traits[var_name].label
+      aaa += `${label}: ${text}`
+    } catch(e) {
+      if (var_name == 'BIOGRAFIA' || var_name == 'APARÊNCIA' || var_name == 'COMPORTAMENTO') {
+        aaa += `${var_name}`
+      } else {
+        aaa += `${toTitleCase(var_name)}: ${text}`
+
+      }
+    }
+  })
+
+  NPCs_salvos = query('div.NPCs_salvos')
+  NPCs_salvos.innerHTML += [
+    `<div data-NPC_nome="${NPC.nome_alternativo}">`,
+      `<input type="button" value="✏️">`,
+      `<input type="button" value="❌">`,
+      `<h4 onclick="func('${NPC.nome_alternativo}')" style="display: inline; margin-left: 1em; user-select: none;">${NPC.nome_alternativo}</h4>`,
+      `<p class="descrição" style="display: none;">${NPC.descrição}</p>`,
+      `<div class="traços" style="display: none;">${aaa}</div>`,
+    `</div>`,
+    `<hr>`
+  ].join('')
+  // query(`[data-NPC_nome="${NPC.nome_alternativo}"] .traços`).innerHTML = aaa
+
+}
+
+func = (a)=>{
+  p_descrição = query(`[data-NPC_nome="${a}"] .descrição`)
+  div_traços = query(`[data-NPC_nome="${a}"] .traços`)
+  if (p_descrição.style.display == 'none') {
+    p_descrição.style.display = ''
+    div_traços.style.display = ''
+  } else {
+    p_descrição.style.display = 'none'
+    div_traços.style.display = 'none'
+  }
+  
+}
+
+socket.emit('getNPCs')
+socket.on('NPCs', (NPCs)=>{
+  if (NPCs.length == 1) {
+    add_NPC(NPCs[0])
+  } else if (NPCs.length > 1) {
+    NPCs.forEach(i=>add_NPC(i))
+  }
+})
+
 // document.onkeyup = function(e) {if (e.ctrlKey && e.which == 66) {
 //     // alert("Ctrl + B shortcut combination was pressed");
 //   } 
@@ -44,7 +103,7 @@ const generate = (variavel)=>{
       check(checkbox, span, variavel)
     }
 }
-
+let nome_atual
 const generate_npc = ()=>{
 
   select_ancestralidade = query('select.ancestralidade')
@@ -92,18 +151,18 @@ const generate_all = ()=>{
 
   generate_npc()
 
-  const vars_appearance2 = [tatuagem, roupas, joia]
+  const vars_appearance2 = [traços.tatuagem, traços.roupas, traços.joia]
   create_generate(vars_appearance2[random_number(0, vars_appearance2.length)], 'NPC_appearance');
 
-  const vars_appearance1 = [olhos, orelhas, boca, queixo, outros_traços_faciais, mãos, cicatrizes]
+  const vars_appearance1 = [traços.olhos, traços.orelhas, traços.boca, traços.queixo, traços.outros_traços_faciais, traços.mãos, traços.cicatrizes]
   create_generate(vars_appearance1[random_number(0, vars_appearance1.length)], 'NPC_appearance');
 
-  const vars_behavior = [quando_calmo, quando_estressado, fé, defeito]
+  const vars_behavior = [traços.quando_calmo, traços.quando_estressado, traços.fé, traços.defeito]
   create_generate(vars_behavior[random_number(0, vars_behavior.length)], 'NPC_behavior');
 
     ;
 
-  [local_de_nascimento, pais, lar, biografia, corpo, altura, cabelo, humor].forEach(variavel=>{generate(variavel)});
+  [traços.local_de_nascimento, traços.pais, traços.lar, traços.biografia, traços.corpo, traços.altura, traços.cabelo, traços.humor].forEach(variavel=>{generate(variavel)});
 }
 
 
@@ -161,32 +220,49 @@ generate_all()
 
 const salvar_NPC = ()=>{
 
-  let span_option
-  let NPC = ''
-  query('h2:not(.descrição), div[class] label, span, select').forEach(i=>{
-    label = i.innerText
+  let label
+  let div
+  const NPC = {}
+  traits = []
+  query('#NPC_container label, #NPC_container span, #NPC_container select, #NPC_container h2')  
+    .forEach(i=>{
+    text = i.innerText
     tag = i.localName
     if (tag == 'h2') {
-      label = label.toUpperCase()
-      NPC += `${label}\n`
+      text = text.toUpperCase()
+       traits.push({[text]:text})
+       // console.log(i.closest('div'))
     } else {
       if (tag == 'select') {
-        label = i.querySelector(`option[value="${i.value}"]`).innerText
+        text = i.querySelector(`option[value="${i.value}"]`).innerText
+      } 
+      if (!label) {
+        label = text
+        div = i.closest('div').className
       } else {
-        label = `${label}`
-      }
-      if (!span_option) {
-        span_option = label
-      } else {
-        NPC += `  ${span_option} ${label}\n`
-        span_option = ''
+        traits.push({[div]:text})
+        // traits.push(div)
+        // traits += `<p><label style="margin-left: 1em;">${label}</label> <span>${text}</span></p>`
+        label = ''
       }
     }
   })
-  const descrição = query('.descrição textarea').value
-  const nome_alternativo = query('.descrição input').value
+  NPC.traits = traits
+  NPC.descrição = query('.descrição textarea').value
+  // age >= 21 ? "Beer" : "Juice"
+  NPC.nome_alternativo = query('.descrição input').value == '' ? query('.nome span').innerText : query('.descrição input').value
+  // NPC.nome_alternativo = query('.descrição input').value
+  NPC.nome = query('.nome span').innerText
 
-  console.log(nome_alternativo)
-  console.log(descrição)
-  console.log(NPC)
+  // socket.emit('saveNPC', NPC)
+  // console.log(NPC.nome_alternativo)
+  // console.log(NPC.descrição)
+  // console.log(NPC.traços)
+  query('.descrição input').value = ''
+
+  if (query('.nome span').innerText != nome_atual) {
+    add_NPC(NPC)
+    nome_atual = query('.nome span').innerText
+  }
+
 }

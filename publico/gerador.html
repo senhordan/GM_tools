@@ -4,22 +4,18 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title></title>
+  <title>Gerador</title>
   <link rel="stylesheet" href="">
-  <style type="text/css">
-    #humanos{
-    }
-    #NPC_container{
-      /*text-align: right;*/
-    }
-  </style>
+  <style type="text/css"></style>
 </head>
 <body>
-  <input type="checkbox" value="🎲" id="toggle_all">
-  <input type="button" value="🎲" id="regenerate">
-  <div id="NPC_container" style="margin-bottom: 1em;">
+  <h1>Gerar NPC</h1>
+  <div id="NPC_container" style="margin: 2em 0;">
+    <input type="checkbox" value="🎲" id="toggle_all">
+    <input type="button" value="🎲" id="regenerate">
+    <input type="button" onclick="salvar_NPC()" value="💾">
     <div id="NPC">
-      <h2>NPC</h2>
+      <!-- <h2>NPC</h2> -->
       <div class="genero">
         <input type="checkbox" class="genero">
         <label style="padding-left: 2.3em;">Gênero:</label>
@@ -153,24 +149,28 @@
         <span></span>
       </div>
     </div>
-  </div>
+  </div> 
   <div class="descrição">
-    <h2 class="descrição">Descrição</h2>
+    <h2>Descrição</h2>
     <label>Nome Alternativo</label>
     <input type="text">
     <textarea name="" id="" cols="35" rows="10" style="display: block;"></textarea>
   </div>
-  <script src="./geração/funções.js"></script>
-  <script src="./geração/anão.js"></script>
-  <script src="./geração/elfo.js"></script>
-  <script src="./geração/gnomo.js"></script>
-  <script src="./geração/goblin.js"></script>
-  <script src="./geração/halfling.js"></script>
-  <script src="./geração/humano.js"></script>
-  <script src="./geração/meio_elfo.js"></script>
-  <script src="./geração/meio_orc.js"></script>
-  <script src="./geração/traços.js"></script>
-  <script src="./geração/ancestralidades.js"></script>
-  <script src="./gerador.js"></script>
+  <div class="NPCs_salvos">
+    <h1>NPCs Salvos</h1>
+  </div>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="../publico/geração/funções.js"></script>
+  <script src="../publico/geração/anão.js"></script>
+  <script src="../publico/geração/elfo.js"></script>
+  <script src="../publico/geração/gnomo.js"></script>
+  <script src="../publico/geração/goblin.js"></script>
+  <script src="../publico/geração/halfling.js"></script>
+  <script src="../publico/geração/humano.js"></script>
+  <script src="../publico/geração/meio_elfo.js"></script>
+  <script src="../publico/geração/meio_orc.js"></script>
+  <script src="../publico/geração/traços.js"></script>
+  <script src="../publico/geração/ancestralidades.js"></script>
+  <script src="../publico/gerador.js"></script>
 </body>
 </html>
