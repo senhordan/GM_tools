@@ -115,6 +115,56 @@ traços.defeito = ['inquieto', 'bebe demasiado', 'come demasiado', 'jura frequen
 
 traços.biografia = ['acólito', 'acrobata', 'advogado', 'apostador', 'apresentador', 'artesão', 'artista', 'batedor', 'caçador', 'caçador de recompensas', 'charlatão', 'criança de rua', 'criminoso', 'detetive', 'discípulo marcial', 'emissário', 'encantador de animais', 'eremita', 'estudioso', 'funileiro', 'gladiador', 'guarda', 'herbalista', 'lavrador', 'marinheiro', 'médico de campo', 'mercador', 'mineiro', 'nobre', 'nômade', 'operário', 'prisioneiro', 'soldado', 'taverneiro', 'vidente'];
 
+traços.local_de_nascimento.var_name = 'local_de_nascimento'
+traços.pais.var_name = 'pais'
+traços.lar.var_name = 'lar'
+traços.memoria.var_name = 'memoria'
+traços.olhos.var_name = 'olhos'
+traços.orelhas.var_name = 'orelhas'
+traços.boca.var_name = 'boca'
+traços.nariz.var_name = 'nariz'
+traços.queixo.var_name = 'queixo'
+traços.cabelo.var_name = 'cabelo'
+traços.outros_traços_faciais.var_name = 'outros_traços_faciais'
+traços.altura.var_name = 'altura'
+traços.corpo.var_name = 'corpo'
+traços.mãos.var_name = 'mãos'
+traços.cicatrizes.var_name = 'cicatrizes'
+traços.tatuagem.var_name = 'tatuagem'
+traços.joia.var_name = 'joia'
+traços.roupas.var_name = 'roupas'
+traços.quando_calmo.var_name = 'quando_calmo'
+traços.quando_estressado.var_name = 'quando_estressado'
+traços.humor.var_name = 'humor'
+traços.fé.var_name = 'fé'
+traços.defeito.var_name = 'defeito'
+traços.biografia.var_name = 'biografia'
+
+traços.local_de_nascimento.label = 'Nasceu'
+traços.pais.label = 'Pais'
+traços.lar.label = 'Lar'
+traços.memoria.label = 'Memoria'
+traços.olhos.label = 'Olhos'
+traços.orelhas.label = 'Orelhas'
+traços.boca.label = 'Boca'
+traços.nariz.label = 'Nariz'
+traços.queixo.label = 'Queixo'
+traços.cabelo.label = 'Cabelo'
+traços.outros_traços_faciais.label = 'Outros Traços Faciais'
+traços.altura.label = 'Altura'
+traços.corpo.label = 'Corpo'
+traços.mãos.label = 'Mãos'
+traços.cicatrizes.label = 'Cicatrizes'
+traços.tatuagem.label = 'Tatuagem'
+traços.joia.label = 'Joia'
+traços.roupas.label = 'Roupas'
+traços.quando_calmo.label = 'Quando Calmo'
+traços.quando_estressado.label = 'Quando Estressado'
+traços.humor.label = 'Humor atual'
+traços.fé.label = 'Fé'
+traços.defeito.label = 'Defeito'
+traços.biografia.label = 'Biografia';
+
 [traços.local_de_nascimento, traços.pais].forEach(variavel=>{
 	variavel.generate = ()=>{
 		const dado = random_number(1, 101)
@@ -173,7 +223,28 @@ traços.memoria.generate = ()=>{
 		}
 	})
 	return item
-};
+}
+
+traços.acessorio = [traços.tatuagem, traços.roupas, traços.joia]
+
+traços.caracteristica = [traços.olhos, traços.orelhas, traços.cabelo,traços.boca, traços.queixo, traços.outros_traços_faciais, traços.mãos, traços.cicatrizes]
+
+traços.comportamento = [traços.quando_calmo, traços.quando_estressado, traços.fé, traços.defeito];
+
+[traços.acessorio, traços.caracteristica, traços.comportamento]
+	.forEach(variavel=>{
+		variavel.variavel_aleatoria = function (){
+			return random(variavel)
+		}
+		variavel.generate = function () {
+			vari = this.variavel_aleatoria()
+			variavel.label = vari.label
+			variavel.var_name = vari.var_name
+			return vari.generate()
+		}
+		// variavel.label = variavel_aleatoria.label
+		// variavel.var_name = variavel_aleatoria.var_name
+});
 
 [traços.olhos, traços.orelhas, traços.boca, traços.queixo, traços.cabelo, traços.outros_traços_faciais, traços.altura, traços.corpo, traços.mãos, traços.cicatrizes, traços.tatuagem, traços.roupas, traços.quando_calmo, traços.quando_estressado, traços.humor, traços.fé, traços.defeito, traços.biografia]
 	.forEach(variavel=>{
@@ -200,53 +271,5 @@ traços.joia.generate = ()=>{
 	return item
 }
 
-traços.local_de_nascimento.var_name = 'local_de_nascimento'
-traços.pais.var_name = 'pais'
-traços.lar.var_name = 'lar'
-traços.memoria.var_name = 'memoria'
-traços.olhos.var_name = 'olhos'
-traços.orelhas.var_name = 'orelhas'
-traços.boca.var_name = 'boca'
-traços.nariz.var_name = 'nariz'
-traços.queixo.var_name = 'queixo'
-traços.cabelo.var_name = 'cabelo'
-traços.outros_traços_faciais.var_name = 'outros_traços_faciais'
-traços.altura.var_name = 'altura'
-traços.corpo.var_name = 'corpo'
-traços.mãos.var_name = 'mãos'
-traços.cicatrizes.var_name = 'cicatrizes'
-traços.tatuagem.var_name = 'tatuagem'
-traços.joia.var_name = 'joia'
-traços.roupas.var_name = 'roupas'
-traços.quando_calmo.var_name = 'quando_calmo'
-traços.quando_estressado.var_name = 'quando_estressado'
-traços.humor.var_name = 'humor'
-traços.fé.var_name = 'fé'
-traços.defeito.var_name = 'defeito'
-traços.biografia.var_name = 'biografia'
 
 
-traços.local_de_nascimento.label = 'Nasceu'
-traços.pais.label = 'Pais'
-traços.lar.label = 'Lar'
-traços.memoria.label = 'Memoria'
-traços.olhos.label = 'Olhos'
-traços.orelhas.label = 'Orelhas'
-traços.boca.label = 'Boca'
-traços.nariz.label = 'Nariz'
-traços.queixo.label = 'Queixo'
-traços.cabelo.label = 'Cabelo'
-traços.outros_traços_faciais.label = 'Outros Traços Faciais'
-traços.altura.label = 'Altura'
-traços.corpo.label = 'Corpo'
-traços.mãos.label = 'Mãos'
-traços.cicatrizes.label = 'Cicatrizes'
-traços.tatuagem.label = 'Tatuagem'
-traços.joia.label = 'Joia'
-traços.roupas.label = 'Roupas'
-traços.quando_calmo.label = 'Quando Calmo'
-traços.quando_estressado.label = 'Quando Estressado'
-traços.humor.label = 'Humor atual'
-traços.fé.label = 'Fé'
-traços.defeito.label = 'Defeito'
-traços.biografia.label = 'Biografia'
