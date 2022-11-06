@@ -154,13 +154,6 @@ img[src$="lock.png"]{
 [data-genero="neutral"]{
   background-color: white;
 }
-.nome_selecionado{
-  opacity: 1;
-  /*background-color: #630d99;*/
-}
-.nome_não_selecionado{
-  /*background-color: lightgray;*/
-}
 #travar_todos[data-travar="true"]{
     background-color: #150d99;
 }
@@ -180,50 +173,76 @@ img[src$="lock.png"]{
   padding-left: .5em;
 }
 
-
+.pesquisa {
+  margin: 1em;
+  text-align: center;
+}
+#container_de_condições_grupos{
+  text-align: center;
+}
+#container_de_condições_grupos *{
+  padding: .2em;
+}
+[id^="container_de_condições"] button{
+  margin: .1em;
+}
+#pesquisar_condição{
+  font-size: 1em;
+  padding: .5em;
+}
 #container_de_condições_nomes{
   text-align: center;
   margin: 1em;
 }
-[id^="container_de_condições"] [data-grupo="outros"]{
+#Regras [data-grupo="outros"]{
   background-color: blue;
   opacity: .6;
 }
-[id^="container_de_condições"] [data-grupo="atitudes"]{
+#Regras [data-grupo="atitudes"]{
   background-color: green;
   opacity: .6;
 }
-[id^="container_de_condições"] [data-grupo="sentidos"]{
+#Regras [data-grupo="sentidos"]{
   background-color: #493a54;
   opacity: .6;
 }
-[id^="container_de_condições"] [data-grupo="morte"]{
-  background-color: #db1111;
+#Regras [data-grupo="morte"]{
+  background-color: #b50000;
   opacity: .6;
 }
-[id^="container_de_condições"] [data-grupo="atributos reduzidos"]{
+#Regras [data-grupo="atributos reduzidos"]{
   background-color: purple;
   opacity: .6;
 }
-[id^="container_de_condições"] [data-grupo="graus de detecção"]{
+#Regras [data-grupo="graus de detecção"]{
   background-color: #ff5e00;
   opacity: .6;
 }
-#container_de_condições_nomes button{
-  margin: .1em;
+#container_de_condições_descrição, #container_de_condições_citações, #container_de_NPCs_salvos_descrição{
+  width: 25em;
+  margin: auto;
 }
-#container_de_condições_descrição p{
-  margin: 0px;
+#container_de_condições_descrição h2{
+  text-align: center;
 }
-#container_de_condições_descrição em{
-  font-weight: bold;
+a{
+  font-style: italic;
+  /*font-weight: bold;*/
   text-decoration: underline;
 }
-#container_de_condições_descrição p:not(:first-child){
+#container_de_condições_descrição a{
+  font-weight: bold;
+  text-decoration: underline;
+  color: black;
+}
+#container_de_condições_descrição p:not(:first-child + p){
   text-indent: 1.5em;
 }
 #container_de_condições_descrição div[data-condição]{
   margin: 1em 0;
+}
+#container_de_condições_citações div h2{
+  text-align: center;
 }
 
 

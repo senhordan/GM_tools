@@ -77,17 +77,21 @@ const trocar_estado_tab = (container)=>{
   })
 }
 
-const trocar_estado_botões_nomes = (container)=>{
-  const botões_nomes = container.querySelectorAll('*')
-  botões_nomes.forEach(botão_nome=>{
+const trocar_estado_botões = (container)=>{
+  const botões = container.querySelectorAll('*')
+  botões.forEach(botão=>{
     if (event.target == container) {
-    } else if (botão_nome == event.target) {
-      botão_nome.classList.toggle('nome_selecionado')
-      botão_nome.classList.toggle('nome_não_selecionado')
-    } else {
-      if (botão_nome.className.includes('nome_selecionado')) {
-        botão_nome.className = botão_nome.className.replace('nome_selecionado', 'nome_não_selecionado')
+    } else if (botão == event.target) {
+
+      const opacidade = botão.style.opacity
+      if (opacidade == 0.6 || opacidade == '') {
+        botão.style.opacity = 1
+      }else {
+        botão.style.opacity = 0.6
       }
+      
+    } else {
+      botão.style.opacity = 0.6
     }
   })
 }
@@ -155,7 +159,7 @@ const add_NPC = (NPC)=>{
 
   ].join('')
 
-  nome = "<button class=\"nome_não_selecionado btn-rdn\" data-nome=\""+NPC.nome+"\" data-genero=\""+NPC.genero[0]+"\" onclick=\"mostrar_esconder_caracteristicas(`"+NPC.nome+"`)\">"+NPC.nome+"</button>"
+  nome = "<button class=\"btn-rdn\" data-nome=\""+NPC.nome+"\" data-genero=\""+NPC.genero[0]+"\" onclick=\"mostrar_esconder_caracteristicas(`"+NPC.nome+"`)\">"+NPC.nome+"</button>"
 
   container_de_nomes.innerHTML += nome
   reordenar_nomes()
@@ -273,7 +277,7 @@ tabs_NPC_container.onclick = (event)=>{
 }
 
 container_de_nomes.onclick = (event)=>{
-  trocar_estado_botões_nomes(container_de_nomes)
+  trocar_estado_botões(container_de_nomes)
 }
 
 // Editar e Remover NPC 

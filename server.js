@@ -58,7 +58,8 @@ app.get('/', (req, res)=>{
 
 
 http.listen(3000, ip, ()=>{
-	console.log('Rodando servidor em http://'+ip+':3000')
+	const link = `http://${ip}:3000`
+	console.log(`Rodando servidor em ${link}`)
 })
 
 
