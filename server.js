@@ -5,7 +5,7 @@ const io = require('socket.io')(http)
 const path = require('path')
 const ip = require('ip').address()
 const fs = require('fs')
-
+ 
 app.engine('html', require('ejs').renderFile)
 app.set('view engine', 'html')
 app.use('/publico', express.static(path.join(__dirname, 'publico')))
