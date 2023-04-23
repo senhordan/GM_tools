@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GM Tools</title>
+  <link rel="stylesheet" href="../publico/index.css">
+  <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous"> -->
+</head>
+<body>
+  <div id="tabs_container" class="tabs_container">
+    <button class="tab tab_não_selecionada" id="tab_NPC" data-tab="NPC">NPC</button>
+    <button class="tab tab_selecionada" id="tab_regras" data-tab="Regras">Regras</button>
+  </div>
+  <div id="NPC" style="display: none;">
+    <div id="tabs_NPC_container" class="tabs_container">
+      <button class="tab tab_selecionada" id="tab_NPC_gerar" data-tab="Gerar_NPC">Gerar NPC</button>
+      <button class="tab tab_não_selecionada" id="tab_NPC_salvos" data-tab="NPCs_salvos">NPCs Salvos</button>
+    </div>
+    <div id="Gerar_NPC">
+      <div class="botões">
+        <button id="travar_todos" class="btn-rdn" data-travar="false"><img src="../publico/imgs/lock.png"><img src="../publico/imgs/unlock.png"></button>
+        <button id="gerar_novamente" class="btn-rdn"><img src="../publico/imgs/dice.png"> Gerar Novamente</button>
+        <button id="salvar_NPC" class="btn-rdn"><img src="../publico/imgs/save.png"> Salvar NPC</button>
+      </div>
+      <h2>Nome<img src="../publico/imgs/dice.png" id="gerar_novo_nome"></h2>
+        <!-- <h2>NPC</h2> -->
+      <div class="genero">
+        <input type="checkbox">
+        <label>Gênero:</label>
+        <select id="genero">
+          <option value="female">Feminino</option>
+          <option value="male">Masculino</option>
+          <option value="neutral">Neutro</option>
+        </select>
+      </div>
+      <div class="ancestralidade">
+        <input type="checkbox">
+        <label>Ancestralidade:</label>
+        <select id="ancestralidade">
+          <option value="anão" class="neutral">Anão</option>
+          <option value="elfo">Elfo</option>
+          <option value="gnomo">Gnomo</option>
+          <option value="goblin" class="neutral">Goblin</option>
+          <option value="halfling" class="neutral">Halfling</option>
+          <option value="meio_elfo" class="neutral">Meio elfo</option>
+          <option value="meio_orc">Meio orc</option>
+          <optgroup label="Humano">
+            <option value="humano" class="neutral">Etnia Aleatória</option>
+            <option value="garundi" class="neutral">Garundi</option>
+            <option value="keleshita" class="neutral">Keleshita</option>
+            <option value="kellid" class="neutral">Kellid</option>
+            <option value="nidalês" class="neutral">Nidalês</option>
+            <option value="shoanti" class="neutral">Shoanti</option>
+            <option value="taldano" class="neutral">Taldano</option>
+            <option value="ulfeno" class="neutral">Ulfeno</option>
+            <option value="varisiano" class="neutral">Varisiano</option>
+            <option value="vudrani" class="neutral">Vudrani</option>
+            <optgroup label="Mwangi" class="neutral">
+              <option value="mwangi"class="humano neutral">Cultura Aleatória</option>
+              <option value="bekyar" class="humano neutral">Bekyar</option>
+              <option value="mauxi"class="humano neutral">Mauxi</option>
+              <option value="bonuwat"class="humano neutral">Bonuwat</option>
+              <option value="zenj"class="humano neutral">Zenj</option>
+            </optgroup>
+            <optgroup label="Tianês">
+              <option value="tianês">Cultura Aleatória</option>
+              <option value="tian_dan" class="neutral">Tian Dan</option>
+              <option value="tian_dtangs" class="neutral">Tian Dtangs</option>
+              <option value="tian_hwan" class="neutral">Tian Hwan</option>
+              <option value="tian_la" class="neutral">Tian La</option>
+              <option value="tian_min">Tian Min</option>
+              <option value="tian_shu">Tian Shu</option>
+              <option value="tian_sing" class="neutral">Tian Sing</option>
+            </optgroup>
+          </optgroup>
+        </select>
+      </div>
+      <div class="nome">
+        <input type="checkbox">
+        <!-- <img src="../publico/imgs/dice.png">       -->
+        <label>Nome:</label>
+        <span id="nome"></span>
+      </div>
+      <h2>Biografia</h2>
+      <div class="local_de_nascimento">
+        <input type="checkbox" class="local_de_nascimento">
+        <img src="../publico/imgs/dice.png" class="local_de_nascimento">
+        <label class="local_de_nascimento"></label>
+        <span class="local_de_nascimento"></span>
+      </div>
+      <div class="pais">
+        <input type="checkbox" class="pais">
+        <img src="../publico/imgs/dice.png" class="pais">
+        <label class="pais"></label>
+        <span class="pais"></span>
+      </div>
+      <div class="lar">
+        <input type="checkbox" class="lar">
+        <img src="../publico/imgs/dice.png" class="lar">
+        <label class="lar"></label>
+        <span class="lar"></span>
+      </div>
+      <div class="biografia">
+        <input type="checkbox" class="biografia">
+        <img src="../publico/imgs/dice.png" class="biografia">
+        <label class="biografia"></label>
+        <span class="biografia"></span>
+      </div>
+      <h2>Aparência</h2>
+      <div class="corpo">
+        <input type="checkbox" class="corpo">
+        <img src="../publico/imgs/dice.png" class="corpo">
+        <label class="corpo"></label>
+        <span class="corpo"></span>
+      </div>
+      <div class="altura">
+        <input type="checkbox" class="altura">
+        <img src="../publico/imgs/dice.png" class="altura">
+        <label class="altura"></label>
+        <span class="altura"></span>
+      </div>
+      <div class="acessorio">
+        <input type="checkbox" class="acessorio">
+        <img src="../publico/imgs/dice.png" class="acessorio">
+        <label class="acessorio"></label>
+        <span class="acessorio"></span>
+      </div>
+      <div class="caracteristica">
+        <input type="checkbox" class="caracteristica">
+        <img src="../publico/imgs/dice.png" class="caracteristica">
+        <label class="caracteristica"></label>
+        <span class="caracteristica"></span>
+      </div>
+      <h2>Comportamento</h2>
+      <div class="humor">
+        <input type="checkbox" class="humor">
+        <img src="../publico/imgs/dice.png" class="humor">
+        <label class="humor"></label>
+        <span class="humor"></span>
+      </div>
+      <div class="comportamento">
+        <input type="checkbox" class="comportamento">
+        <img src="../publico/imgs/dice.png" class="comportamento">
+        <label class="comportamento"></label>
+        <span class="comportamento"></span>
+      </div>
+      <div class="descrição">
+        <h2>Descrição <img src="../publico/imgs/x.png"></h2>
+        <label>Nome Alternativo:</label>
+        <input type="text" id="nome_alternativo">
+        <label>Descrição do NPC:</label>
+        <textarea cols="35" rows="10" id="descrição"></textarea>
+      </div>
+    </div> 
+    <div id="NPCs_salvos" style="display: none;">
+      <!-- <h3>NPCs Salvos</h3> -->
+      <div id="container_de_NPCs_salvos_nomes"></div>
+      <div id="container_de_NPCs_salvos_descrição"></div>
+    </div>
+  </div>
+  <div id="Regras" ><!-- style="display: none;"> -->
+    <div id="tabs_Regras_container" class="tabs_container">
+      <button class="tab tab_selecionada" id="tab_Regras_condições" data-tab="Condições">Condições</button>
+      <button class="tab tab_não_selecionada" id="tab_Regras_salvos" data-tab="Consulta">Consulta</button>
+    </div>
+    <div id="Condições">
+      <div id="container_de_condições_grupos" style="display: none;">
+        <button class="btn-rdn" data-grupo="outros">Outros</button>
+        <button class="btn-rdn" data-grupo="atitudes">Atitudes</button>
+        <button class="btn-rdn" data-grupo="sentidos">Sentidos</button>
+        <button class="btn-rdn" data-grupo="morte">Morte</button>
+        <button class="btn-rdn" data-grupo="atributos reduzidos">Atributos Reduzidos</button>
+        <button class="btn-rdn" data-grupo="graus de detecção">Graus De Detecção</button>
+      </div>
+      <div class="container_pesquisa_nomes">
+        <div class="pesquisa">
+          <input type="text" id="pesquisar_condição">
+        </div>
+        <div id="container_de_condições_nomes"></div>
+      </div>
+      <div id="container_de_condições_descrição"></div>
+      <div id="container_de_condições_citações"></div>
+    </div>
+    <div id="Consulta" style="display: none;">
+      <iframe src="https://pf2srd.com.br/" title="description" width="1000" height="700"></iframe>
+    </div>
+  </div>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="../publico/NPC/geração/funções.js"></script>
+  <script src="../publico/NPC/geração/anão.js"></script>
+  <script src="../publico/NPC/geração/elfo.js"></script>
+  <script src="../publico/NPC/geração/gnomo.js"></script>
+  <script src="../publico/NPC/geração/goblin.js"></script>
+  <script src="../publico/NPC/geração/halfling.js"></script>
+  <script src="../publico/NPC/geração/humano.js"></script>
+  <script src="../publico/NPC/geração/meio_elfo.js"></script>
+  <script src="../publico/NPC/geração/meio_orc.js"></script>
+  <script src="../publico/NPC/geração/traços.js"></script>
+  <script src="../publico/NPC/geração/ancestralidades.js"></script>
+  <script src="../publico/NPC/gerador.js"></script>
+  <script src="../publico/condições/condições.js"></script>
+  <script src="../publico/regras/regras.js"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script> -->
+</body>
+</html>

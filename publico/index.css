@@ -1,0 +1,271 @@
+body{
+  margin: 1em;
+  font-family: sans-serif;
+  font-weight: normal;
+  font-size: 1em;
+
+}
+button{
+  font-size: 1em;
+  font-weight: bold;
+  cursor: pointer;
+  color: white;
+  border-width: 0px;
+  padding: .5em;
+  background-color: #bf2dd1bf;
+  box-shadow: 2px 2px 7px #0000005e;
+  margin: .5em;
+
+}
+.btn-rdn{
+  border-radius: 5px;
+}
+.tab{
+  margin: .3em -3px;
+  padding: .5em;
+  /*border-style: ridge;*/
+  /*border-width: 3px;*/
+}
+#tabs_container .tab_selecionada{
+  background-color: #8d0101;
+}
+#tabs_container .tab_não_selecionada{
+  background-color: #d30d0ddb;
+}
+#tabs_NPC_container .tab_selecionada{
+  background-color: #630d99;
+}
+#tabs_NPC_container .tab_não_selecionada{
+  /*background-color: lightgray;*/
+}
+#tabs_Regras_container .tab_selecionada{
+  background-color: #630d99;
+}
+#tabs_Regras_container .tab_não_selecionada{
+  /*background-color: lightgray;*/
+}
+.tabs_container{
+  text-align: center;
+}
+.tabs_container *{
+  padding: 1em;
+  border-color: #00000030;
+  border-left-width: 2px;
+  border-right-width: 2px;
+}
+.tabs_container > *:first-child{
+  border-left-width: 0px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+.tabs_container > *:last-child{
+  border-right-width: 0px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+.botões{
+  text-align: center;
+}
+.botões button {
+    background-color: #5c60c5;
+}
+#NPCs_salvos h2 > img{
+  width: 1em;
+  margin-left: .2em;
+  cursor: pointer;
+}
+#NPCs_salvos h2 > img:first-child{
+  margin-left: .5em;
+}
+#container_de_NPCs_salvos_nomes{
+  text-align: center;
+  margin-top: .5em;
+}
+#container_de_NPCs_salvos_nomes *{
+  padding: .5em;
+}
+#container_de_NPCs_salvos_nomes button{
+  /*border-width: 1px;
+  border-radius: 2px;*/
+  margin: 8px;
+  margin-top: 0px;
+  margin-left: 0px;
+}
+#container_de_NPCs_salvos_descrição h3{
+  margin-top: 1em;
+}
+label{
+  font-weight: bold;
+  color: black;
+}
+#NPC :checked{
+  accent-color: #150d99;
+}
+h2{
+  margin-top: 1em;
+  margin-bottom: .2em;
+}
+h2 > img[src$="dice.png"]{
+  margin-left: .5em;
+}
+img[src$="dice.png"], img[src$="edit.png"], img[src$="x.png"]{
+  vertical-align: middle;
+  width: 1em;
+  cursor: pointer;
+}
+button img[src$="dice.png"]{
+  width: 2em;
+}
+img[src$="save.png"]{
+  vertical-align: middle;
+  width: 2em;
+}
+button img[src$="save.png"]{
+  width: 2em;
+}
+img[src$="lock.png"]{
+  vertical-align: middle;
+  width: 2em;
+}
+.descrição *:not(img){
+  display: block;
+  margin-bottom: .3em;
+}
+#NPCs_salvos label{
+  margin-right: .5em;
+}
+#nome_alternativo{
+  width: 295px;
+}
+[value="🎲"]{
+  cursor: pointer;
+  background-color: #00000000;
+  border-color: #00000000;
+  padding: 0px;
+}
+[data-genero="female"]{
+  background-color: #ff37b8;
+  opacity: .6;
+}
+[data-genero="male"]{
+  background-color: #376cff;
+  opacity: .6;
+}
+[data-genero="neutral"]{
+  background-color: white;
+}
+#travar_todos[data-travar="true"]{
+    background-color: #150d99;
+}
+#travar_todos[data-travar="true"] img[src$="/lock.png"]{
+  display: none;
+}
+#travar_todos[data-travar="false"] img[src$="/unlock.png"]{
+  display: none;
+}
+#travar_todos[data-travar="true"]::after{
+  content: "Destravar Todos";
+}
+#travar_todos[data-travar="false"]::after{
+  content: "Travar Todos";
+}
+#Generate_NPC .genero label, #Generate_NPC .ancestralidade label, #Generate_NPC .nome label{
+  padding-left: .5em;
+}
+
+.pesquisa {
+  margin: 1em;
+  text-align: center;
+}
+#container_de_condições_grupos{
+  text-align: center;
+}
+#container_de_condições_grupos *{
+  padding: .2em;
+  margin: 1px;
+  margin-top: 1em;
+}
+.container_pesquisa_nomes{
+  display: flex;
+  flex-direction: column;
+}
+#pesquisar_condição{
+  font-size: 1em;
+  padding: .5em;
+  width: 160px;
+}
+#container_de_condições_nomes{
+  text-align: center;
+  margin: auto;
+  margin-top: -1em;
+  width: 180px;
+  max-height: 20em;
+  overflow: auto; 
+
+}
+#container_de_condições_nomes button{
+  margin: 0px auto;
+  display: block;
+  width: 100%;
+  box-shadow: 2px 2px 7px #00000000;
+  border-radius: 0px;
+}
+#Regras [data-grupo="outros"]{
+  background-color: blue;
+  opacity: .6;
+}
+#Regras [data-grupo="atitudes"]{
+  background-color: green;
+  opacity: .6;
+}
+#Regras [data-grupo="sentidos"]{
+  background-color: #493a54;
+  opacity: .6;
+}
+#Regras [data-grupo="morte"]{
+  background-color: #b50000;
+  opacity: .6;
+}
+#Regras [data-grupo="atributos reduzidos"]{
+  background-color: purple;
+  opacity: .6;
+}
+#Regras [data-grupo="graus de detecção"]{
+  background-color: #ff5e00;
+  opacity: .6;
+}
+#Regras #Consulta {
+  margin-top: 1em;
+}
+#Regras #Consulta iframe{
+  display: block;
+  margin: auto;
+}
+#container_de_condições_descrição, #container_de_condições_citações, #container_de_NPCs_salvos_descrição{
+  width: 25em;
+  margin: auto;
+}
+#container_de_condições_descrição h2{
+  text-align: center;
+}
+a{
+  font-style: italic;
+  /*font-weight: bold;*/
+  text-decoration: underline;
+}
+#container_de_condições_descrição a{
+  font-weight: bold;
+  text-decoration: underline;
+  color: black;
+}
+#container_de_condições_descrição p:not(:first-child + p){
+  text-indent: 1.5em;
+}
+#container_de_condições_descrição div[data-condição]{
+  margin: 1em 0;
+}
+#container_de_condições_citações div h2{
+  text-align: center;
+}
+
+
